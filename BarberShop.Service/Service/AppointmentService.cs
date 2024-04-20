@@ -29,6 +29,8 @@ namespace BarberShop.Service.Service
             this.servicesRepository = servicesRepository;
         }
 
+
+
         public async Task<ServiceResultDto<AppointmentDto>> EmployeeCreateAppoinment(AppointmentDto appointmentDto)
         {
             var serviceResult = new ServiceResultDto<AppointmentDto>();
