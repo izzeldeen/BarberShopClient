@@ -1,0 +1,235 @@
+<div class="row">
+    <div class="container-all-dataTable">
+        <div class="table-scroll-area" *ngIf="!dataOfTable.isLoading">
+            <div class="value-table float-start"
+                 [ngClass]="{'full' : (!dataOfTable.options.isHaveAction  && !dataOfTable.options.isHaveDetails)|| dataOfTable.data.length == 0}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+
+                        <th class="w-30" *ngFor="let col of dataOfTable.headers"
+                            [class.cursor-pointer]="col.sortingColumn">
+                            {{col.display | translate }}
+                            <span *ngIf="col.sortingColumn">
+                  <i class="fa-solid fa-arrow-up-long"
+                     [class.sort-active]=" sortingColumn && col.sortingColumn == sortingColumn && !isAscSorting"></i>
+                  <i class="fa-solid fa-arrow-down-long"
+                     [class.sort-active]="  sortingColumn &&col.sortingColumn == sortingColumn && isAscSorting"></i>
+                </span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let row of dataOfTable.data | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageIndex + 1, totalItems: dataOfTable.dataCount};let index = index; trackBy: trackByFn">
+
+                        <td *ngFor="let column of dataOfTable.headers; let i = index"
+                            #popover="ngbPopover"
+                            placement="bottom"
+                            container="body"
+                            (mouseenter)="isEllipsisActive($event,popover)"
+                            [ngbPopover]="dataContainer" triggers="mouseenter:mouseleave">
+                            <ng-container [ngTemplateOutlet]="dataContainer"></ng-container>
+                            <ng-template [ngSwitch]="column.type" #dataContainer>
+                                <span *ngIf="column.canCopy && row[column.key]">
+                                    <button *ngIf="!row.isCopy" (click)="onCopyValue(row[column.key])"
+                                            class="btn btn-rounded btn-soft-secondary btn-sm">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+
+                                </span>
+
+                                <span *ngSwitchCase="HeaderTypes.Any">
+                                 <span *ngIf="row[column.key];else emptyTemplate">
+                                     <span *ngIf="row[column.key]">
+                                        {{ column.translate ? (row[column.key] | translate) :  row[column.key]  }}
+                                    </span>
+                                    <span class="text-warning" *ngIf="!row[column.key]">
+                                        {{ 'N/A'  | translate}}
+                                    </span>
+
+                                 </span>
+                                </span>
+
+                                <span *ngSwitchCase="HeaderTypes.Date" dir="ltr">
+                                {{ row[column.key] | date: 'mediumDate' }}
+                                </span>
+
+                                <span *ngSwitchCase="HeaderTypes.Currency"> 
+                                    <span *ngIf="row[column.key];else emptyTemplate">
+                                        <span *ngIf="row[column.key]">
+                                            {{ row[column.key] | currency:'':''}}  {{'GENERAL.AED' | translate}}
+                                        </span>
+                                        <span class="text-warning" *ngIf="!row[column.key]">
+                                            {{ 'N/A'  | translate}}
+                                        </span>
+
+                                    </span>
+                                </span>
+
+                                <span *ngSwitchCase="HeaderTypes.Lookup">
+                                {{ row[column.key]['label']}}
+                                </span>
+                                <span *ngSwitchCase="HeaderTypes.MoneyUpdate" class="{{column.customClass}} fw-bolder">
+                                        <span class="text-danger"
+                                              *ngIf="row['transactionTypeFlag'] && row['transactionTypeFlag'] == 'D' ">
+                                            -  {{ row[column.key] | currency:'':''}}  {{'GENERAL.AED' | translate}}</span>
+                                        <span class="text-success"
+                                              *ngIf="row['transactionTypeFlag'] && row['transactionTypeFlag'] == 'C' ">
+                                            +  {{ row[column.key] | currency:'':''}}  {{'GENERAL.AED' | translate}}</span>
+
+                                </span>
+                                <span *ngSwitchCase="HeaderTypes.Status" class="{{column.customClass}}">
+
+                                    {{ row[column.key] | translate}}
+                                    </span>
+                                <span *ngSwitchCase="HeaderTypes.DateTime" dir="ltr">
+                                {{ row[column.key] | date: 'medium' }}
+                                </span>
+                                <span *ngSwitchCase="HeaderTypes.dependingOnKey" dir="ltr">
+                                    <span class="text-danger fw-bolder" *ngIf="row[column.dependingKey]">
+                                        {{column.displayResults | translate}}
+                                    </span>
+                                    <span class="text-success fw-bolder" *ngIf="!row[column.dependingKey]">
+                                        {{'Active' | translate}}
+                                    </span>
+
+                                </span>
+                                <span *ngSwitchCase="HeaderTypes.Boolean">
+                                <!--{{  ? 'True' : 'False'  }} -->
+                                    <span *ngIf="row[column.key] == true && column.key != 'locked'"
+                                          class="badge-soft-success badge px-3 py-1">
+                                            <i class="fas fa-check"></i> {{'Yes' | translate}}
+                                    </span>
+                                    <span *ngIf="row[column.key] == true && column.key == 'locked'"
+                                          class="badge-soft-danger badge px-3 py-1">
+                                        <i class="fas fa-lock text-danger"></i> {{'Yes' | translate}}
+                                    </span>
+                                    <span *ngIf="row[column.key] != true && column.key == 'locked'"
+                                          class="badge-soft-success badge px-3 py-1">
+                                             <i class="fas fa-unlock"></i> {{'NO' | translate}}
+                                    </span>
+
+                                    <span *ngIf="row[column.key] != true && column.key != 'locked'"
+                                          class="badge-soft-danger badge px-3 py-1">
+                                        <i class="fas fa-times"></i> {{'NO' | translate}}
+                                    </span>
+                                </span>
+                                <span *ngSwitchDefault>
+                                    <span *ngIf="row[column.key]">
+                                        {{ row[column.key] }}
+                                    </span>
+                                    <span class="text-warning" *ngIf="!row[column.key]">
+                                        {{ 'N/A'  | translate}}
+                                    </span>
+                                     </span>
+
+                            </ng-template>
+                            <ng-template #emptyTemplate><span class="text-warning">N/A</span></ng-template>
+
+                        </td>
+                    </tr>
+                    <tr *ngIf="dataOfTable.data.length == 0">
+                        <td [colSpan]="onGetColSpan()"
+                            class="text-center">{{"general.nodataFound" | translate}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="action-table"
+                 *ngIf="(dataOfTable.options.isHaveAction || dataOfTable.options.isHaveDetails) && dataOfTable.data.length != 0 ">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="w-100 text-center">
+                            <span>&nbsp;{{'general.actions' | translate}} </span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="action-area">
+                    <tr *ngFor="let row of dataOfTable.data | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageIndex + 1, totalItems: dataOfTable.dataCount}">
+                        <td class=" text-center "
+                            *ngIf="(dataOfTable.options.isHaveAction )">
+                            <div class="d-flex flex-wrap gap-2  align-items-center justify-content-center ">
+                                <ng-container *ngFor="let action of dataOfTable.actions">
+                                    <div *ngIf="(action.permission && action.dependingKey && !row[action.dependingKey])
+                                           || (action.permission && !action?.dependingKey)"
+                                         class="action-btn cursor-pointer" ngbTooltip="{{action.name | translate}}"
+                                         (click)="action.callBack(row)">
+                                        <i class="{{action.iconName}}"></i>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="dataOfTable.data.length != 0 && !dataOfTable.isLoading " class="row w-100 px-3">
+                <div class="col-sm-12  col-md-3">
+                    <form class="pagination-wrapper">
+                        <div class="form-group options pages">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon addon-left mt-1">{{"general.show"  | translate}} </span>
+                                <select class="form-control mx-2 rounded-select" name="pageChangedName"
+                                        [(ngModel)]="pageSize"
+                                        (ngModelChange)="reloadData(null)">
+                                    <option *ngFor="let item of pageSizeOptions">{{ item }}</option>
+                                </select>
+                                <span class="mt-1">{{'general.of' | translate}}  <span
+                                        class="fw-bolder">{{dataOfTable.dataCount}}</span> </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-12 col-md-9 text-end">
+                    <form class="pagination-wrapper">
+                        <div class="form-group pages">
+                            <pagination-controls
+                                    class="my-pagination"
+                                    id="pager"
+                                    (pageChange)="reloadData($event)"
+                                    [maxSize]="7"
+                                    [directionLinks]="true"
+                                    [autoHide]="false"
+                                    previousLabel="{{'GENERAL.PREV' | translate}}"
+                                    nextLabel="{{'GENERAL.NEXT' | translate}}"
+                                    [responsive]="true"
+                                    screenReaderPaginationLabel="Pagination"
+                                    screenReaderPageLabel="page"
+                                    screenReaderCurrentLabel="You're on page">
+                            </pagination-controls>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class=" table-scroll-area" *ngIf="dataOfTable.isLoading">
+            <table class="table table-striped ">
+                <thead>
+                <tr>
+                    <th *ngFor="let col of dataOfTable.headers">
+                        {{col.display | translate }}
+                        <span *ngIf="col.sortingColumn">
+                  <i class="fa-solid fa-arrow-up-long"
+                     [class.sort-active]=" sortingColumn && col.sortingColumn == sortingColumn && !isAscSorting"></i>
+                  <i class="fa-solid fa-arrow-down-long"
+                     [class.sort-active]="  sortingColumn &&col.sortingColumn == sortingColumn && isAscSorting"></i>
+                </span>
+                    </th>
+                    <th *ngIf="dataOfTable.options.isHaveAction || dataOfTable.options.isHaveDetails">
+
+                    </th>
+                </tr>
+                </thead>
+                <tbody app-table-loader [rows]="+pageSize > 10 ? 10 : +pageSize  ==10? 5: +pageSize "
+                       [columns]="columnsLength">
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+

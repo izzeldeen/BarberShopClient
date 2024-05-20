@@ -1,0 +1,124 @@
+
+
+<div class="card">
+
+    <div class="card-header pb-0">
+        <h1 *ngIf="!entityDetails?.id" class="card-title mt-1 mb-0 " >
+            {{'Create Service' | translate}}
+        </h1>
+        <h1 *ngIf="entityDetails?.id" class="card-title mt-1 mb-0 " >
+            {{'Update Employee' | translate}}
+        </h1>
+    </div>
+    <div class="card-body">
+        <form #manageEntityForm="ngForm" (ngSubmit)="save(manageEntityForm)" class="py-5 px-3">
+
+            <div class="row">
+
+                <div  class="col-md-3">
+                    <label class="form-label fw-bold text-muted"> 
+                        {{'Transaction Type' | translate}} <span class="text-danger">*</span>
+                    </label>
+                    <ng-select 
+                    [(ngModel)]="entityDetails.transactionType" [items]="dllTransactionTypes"
+                     bindLabel="viewValue" bindValue="value" name="transactionType" required
+                     #transactionType='ngModel'
+                     placeholder="{{'Select' | translate }}"
+                     
+                     >
+              <ng-template let-item="item" ng-label-tmp>
+                  {{item.viewValue}}
+              </ng-template>
+              <ng-template let-item="item" ng-option-tmp>
+                  {{item.viewValue }}
+              </ng-template>
+          </ng-select>
+                </div>
+
+
+                <div  class="col-md-3">
+                    <label class="form-label fw-bold text-muted"> 
+                        {{'Employee' | translate}} 
+                    </label>
+                    <ng-select 
+                    [(ngModel)]="entityDetails.employeeId" [items]="dllEmployees"
+                     bindLabel="viewValue" bindValue="value" name="employeeId" 
+                     #employeeId='ngModel'
+                     placeholder="{{'Select' | translate }}"
+                     
+                     >
+              <ng-template let-item="item" ng-label-tmp>
+                  {{item.viewValue}}
+              </ng-template>
+              <ng-template let-item="item" ng-option-tmp>
+                  {{item.viewValue }}
+              </ng-template>
+          </ng-select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold text-muted" for="netAmount">
+                        {{'Amount' | translate}}<span class="text-danger">*</span>
+                    </label>
+
+                    <input class="form-control"
+                           id="netAmount" name="netAmount" type="number" #netAmount="ngModel"
+                           [minLength]="1"
+                           autocomplete="new-title"
+                           required
+                           [(ngModel)]="entityDetails.netAmount">
+
+
+                    <app-validator [control]="netAmount"></app-validator>
+                </div>
+             
+                <div class="col-md-3">
+                    <label class="form-label fw-bold text-muted" for="transactionDate">
+                        {{'Date' | translate}} <span class="text-danger">*</span>
+                    </label>
+
+                    <input class="form-control"
+                           id="transactionDate" 
+                           name="transactionDate" 
+                           type="date"
+                           #transactionDate="ngModel"
+                           required
+                           [(ngModel)]="entityDetails.transactionDate">
+                    <app-validator [control]="transactionDate"></app-validator>
+                </div>
+              
+                <div class="col">
+                    <label class="form-label fw-bold text-muted" for="description">
+                        {{'Description' | translate}} <span class="text-danger">*</span>
+                    </label>
+
+                    <textarea class="form-control"
+                           id="description" name="description"  #description="ngModel"
+                           [minLength]="1"
+                           autocomplete="new-title"
+                           required
+                           [(ngModel)]="entityDetails.description"></textarea>
+
+
+                    <app-validator [control]="description"></app-validator>
+                </div>
+               
+
+        </div>
+        
+
+            <div class="d-flex flex-wrap gap-2 text-end mt-2 align-items-end justify-content-end">
+                <button  (click)="backToList()"
+                class="btn btn-outline-secondary waves-effect btn-rounded waves-light"
+                type="button">{{'Discard' | translate}}</button>
+        
+                <button 
+                        class="btn btn-primary waves-effect btn-rounded waves-light"
+                        type="submit">
+                    {{'Save' | translate}}
+                </button>
+            </div>
+
+          
+        </form>
+    </div>
+</div>

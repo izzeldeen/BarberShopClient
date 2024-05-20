@@ -1,0 +1,47 @@
+<div class="auth-page">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <!-- end col -->
+            <div class="col-md-12">
+                <div class="auth-bg justify-content-center align-items-center pt-md-5 p-4 d-flex" style="height: 100vh">
+                    <div class="bg-overlay bg-dark"></div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="auth-full-page-content text-light d-flex p-sm-5 p-4"
+                             style="background-color: rgba(10, 34 ,73, 0.64);border-radius: 31px;">
+                            <div class="w-100">
+                                <div class="d-flex flex-column h-100" >
+                                    <div class="auth-content my-auto">
+                                        <div class="text-center mb-5" style="direction: ltr;">
+                                            <img src="assets/images/logo-white.png" alt="" height="80">
+                                            <span class="logo-txt text-light" style="font-size: 40px">Store Pro</span>
+                                        </div>
+                                        <div class="text-center" *ngIf="showSuccess">
+                                            <h5 class="mb-2 text-success">{{'user.verifiedEmailSuccess' | translate}}</h5>
+                                        </div>
+
+                                        <div class="text-center" *ngIf="!showSuccess">
+                                            <h5 class="mb-2 text-warning">
+                                                {{'general.activationFailed' | translate}}
+                                            </h5>
+                                        </div>
+
+                                        <div class="mt-5 text-center">
+                                            <a routerLink="/authorization/sign-in"
+                                               class="btn btn-primary btn-block">
+                                                {{'user.forLoginPressHere' | translate}}
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container fluid -->
+</div>

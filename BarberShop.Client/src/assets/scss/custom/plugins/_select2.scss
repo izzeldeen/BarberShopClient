@@ -1,0 +1,10 @@
+.ng-select .ng-select-container{
+  border-radius: 0.8rem !important;
+  margin-bottom: 10px;
+  border: 1px solid #d5e1f2;
+}
+.ng-select.ng-select-opened {
+  .ng-select-container {
+    border-radius: 1.25rem 1.25rem 0 0 !important;
+  }
+}

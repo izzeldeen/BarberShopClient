@@ -1,0 +1,10 @@
+
+<tr *ngFor="let i of Array(rows).fill(rows)">
+  <td *ngFor="let j of Array(columns).fill(columns)"
+      colspan="1'">
+    <div class="loader-container">
+      <div class="line" [style.width]="lineWidth + '%'" ></div>
+    </div>
+
+  </td>
+</tr>

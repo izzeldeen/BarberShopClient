@@ -1,0 +1,19 @@
+// 
+// backgrounds.scss
+//
+
+
+@each $color,
+$value in $theme-colors {
+    .bg-soft-#{$color} {
+        background-color: linear-gradient(#e66465, #9198e5) !important;
+    }
+}
+
+.bg-soft-dark{
+    background-color: linear-gradient(#e66465, #9198e5) !important;
+}
+
+.bg-soft-light{
+    background-color: linear-gradient(#e66465, #9198e5) !important;
+}

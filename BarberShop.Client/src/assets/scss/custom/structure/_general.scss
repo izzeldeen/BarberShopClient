@@ -1,0 +1,41 @@
+// colors
+[data-layout-mode="dark"] {
+  .bg-dark {
+    background-color: var(--#{$prefix}sidebar-dark-bg) !important;
+  }
+}
+
+.input-group.no-br .form-control {
+  border-radius: 0 !important;
+}
+
+.input-group .form-control {
+  border-radius: 0.8rem 0rem 0rem 0.8rem !important;
+}
+
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: $input-border-radius;
+  border-bottom-right-radius: $input-border-radius;
+}
+
+.img-200 {
+  height: 200px !important;
+  width: 200px !important;
+}
+
+.lines-3 {
+  height: 68px;
+  line-height: 20px; /* Height / no. of lines to display */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lines-2 {
+  height: 40px;
+  line-height: 20px; /* Height / no. of lines to display */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

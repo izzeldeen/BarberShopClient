@@ -1,0 +1,8 @@
+.ul-en > li, .ul-ar > li {
+    list-style-type: none;
+}
+
+.ul-en, ul-ar {
+    padding-inline-start: 0;
+    margin-bottom: 0;
+}

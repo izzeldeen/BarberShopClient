@@ -1,0 +1,27 @@
+<p-pickList 
+    [source]="sourceServices" 
+    [target]="targetServices" 
+    sourceHeader="Available" 
+    targetHeader="Selected" 
+    [dragdrop]="true" 
+    [responsive]="true" 
+    [sourceStyle]="{ height: '30rem' }"
+    [targetStyle]="{ height: '30rem' }"
+    breakpoint="1400px">
+        <ng-template let-product pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center gap-3">
+                <div class="flex-1 flex flex-column gap-2">
+                    <span class="font-bold">{{ product.name }}</span>
+                    <div class="flex align-items-center gap-2">
+                        <i class="pi pi-tag text-sm"></i>
+                        <span>
+                            {{ product.categoryName }}
+                        </span>
+                    </div>
+                </div>
+                <span class="font-bold text-900">
+                    {{ '$' + product.amount }}
+                </span>
+            </div>
+        </ng-template>
+</p-pickList>

@@ -1,0 +1,108 @@
+
+.value-table {
+  width: calc(100% - 140px) !important;
+  display: inline-block;
+  overflow-x: auto;
+}
+
+.value-table.full {
+  width: 100% !important;
+
+}
+
+.action-table tbody td {
+  padding: 10px 0px;
+}
+
+
+/*.action-table .table .action-area {
+  tr {
+    box-shadow: 4px 0 12px -5px #dedede;
+    //border-right: 2px solid #efefef;
+  }
+}*/
+
+
+
+.input-group .form-control.rounded-select {
+  border-radius: 0.8rem !important;
+}
+
+.table-striped {
+  margin: 0;
+}
+
+table {
+  th {
+    white-space: nowrap;
+  }
+
+  thead {
+    --bs-table-bg: var(--bs-secondary);
+    color: var(--bs-light);
+    --bs-table-color: var(--bs-light);
+  }
+
+  tr {
+    td {
+      overflow: hidden;
+      white-space: nowrap;
+      height: 54px;
+    }
+  }
+
+}
+
+.action-table {
+
+  width: 140px;
+  display: inline-block;
+}
+
+
+.table-scroll-area {
+  border: 1px solid #e9e9ee;
+  overflow-x: hidden !important;
+  margin-bottom: 10px;
+  border-radius: 0.8rem;
+}
+
+
+.action-btn {
+  border: 1px solid #b6b0b0;
+  padding: 6px;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  /* line-height: 0; */
+  /* text-align: center; */
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+}
+
+table {
+  --bs-table-hover-bg: rgba(245, 230, 220, 0.3) !important;
+
+  tbody tr {
+    height: 54px !important;
+    white-space: nowrap;
+
+    td {
+      max-width: 245px;
+      white-space: nowrap;
+      padding-right: 10px;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  thead tr {
+    height: 45px !important;
+    white-space: nowrap;
+  }
+
+}

@@ -1,0 +1,184 @@
+<div class="auth-page" *ngIf="isLogin==true">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <!-- end col -->
+            <div class="col-md-12">
+                <div class="auth-bg justify-content-center align-items-center pt-md-5 p-4 d-flex" style="height: 100vh">
+                    <div style="background-color: linear-gradient(#e66465, #9198e5);"></div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="auth-full-page-content text-light d-flex p-sm-5 p-4"
+                             style="background-color: rgba(10, 34 ,73, 0.64);border-radius: 31px;">
+                            <div class="w-100">
+                                <div class="d-flex flex-column h-100">
+                                    <div class="auth-content my-auto">
+                                        <div class="text-center mb-5" style="direction: ltr;">
+                                            <img src="assets/images/logo.jpg" alt="" height="120">
+                                        </div>
+                                        <ng-container *ngIf="!showResetPassword">
+                                            <form #LoginForm="ngForm" (ngSubmit)="login(LoginForm)">
+                                                <div class="mb-3">
+                                                    <label for="phoneNumber"
+                                                           class="">{{'Email' | translate}}</label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           #phoneNumber="ngModel"
+                                                           id="phoneNumber"
+                                                           [(ngModel)]="loginModel.phoneNumber"
+                                                           required
+                                                           name="phoneNumber"
+                                                           placeholder="{{'AUTH.Enter_Email' | translate}}">
+                                                    <app-validator [control]="phoneNumber"></app-validator>
+                                                </div>
+    
+                                                <div class="mb-3">
+                                                    <div class="float-end">
+                                                        <!-- <a href="#" (click)="isLogin=false" class="text-light">
+                                                            {{'AUTH.FORGOT_PASSWORD?' | translate}}
+                                                        </a> -->
+                                                    </div>
+                                                    <label for="password"
+                                                           class="">{{'Password'| translate }}</label>
+                                                    <div class="input-group auth-pass-inputgroup">
+                                                        <input [type]="isShowPassword ? 'text' : 'password'"
+                                                               class="form-control"
+                                                               name="password"
+                                                               id="password"
+                                                               [(ngModel)]="loginModel.code"
+                                                               #password="ngModel"
+                                                               required
+                                                               placeholder="Enter password"
+                                                               aria-label="Password"
+                                                               aria-describedby="password-addon">
+                                                        <button class="btn btn-light text-primary" type="button"
+                                                                (click)="toggleFieldTextType()"
+                                                                id="password-addon">
+                                                            <i class="fas "
+                                                               [ngClass]="{'fa-eye': !isShowPassword, 'fa-eye-slash': isShowPassword}"></i>
+                                                        </button>
+                                                    </div>
+                                                    <app-validator [control]="password"></app-validator>
+                                                </div>
+                                                <div class="mt-3 d-grid">
+                                                    <button class="btn btn-primary btn-block"
+                                                            type="submit">
+                                                        {{'Login' | translate}}
+                                                    </button>
+                                                </div>
+                                            </form>
+    
+                                        </ng-container>
+                                       
+
+                                        <ng-container  *ngIf="showResetPassword">
+                                            <form #resetForm="ngForm" (ngSubmit)="resetPasswordForm(resetForm)">
+                                                <div class="mb-3">
+                                                    <div class="float-end">
+                                                        <!-- <a href="#" (click)="isLogin=false" class="text-light">
+                                                            {{'AUTH.FORGOT_PASSWORD?' | translate}}
+                                                        </a> -->
+                                                    </div>
+                                                    <label for="password"
+                                                           class="">{{'AUTH.PASSWORD'| translate }}</label>
+                                                    <div class="input-group auth-pass-inputgroup">
+                                                        <input [type]="isShowPassword ? 'text' : 'password'"
+                                                               class="form-control"
+                                                               name="oldPassword"
+                                                               id="oldPassword"
+                                                               [(ngModel)]="resetPassword.oldPassword"
+                                                               #password="ngModel"
+                                                               required
+                                                               placeholder="Enter old password"
+                                                               aria-label="Password"
+                                                               aria-describedby="password-addon">
+                                                        <button class="btn btn-light text-primary" type="button"
+                                                                (click)="toggleFieldTextType()"
+                                                                id="password-addon">
+                                                            <i class="fas "
+                                                               [ngClass]="{'fa-eye': !isShowPassword, 'fa-eye-slash': isShowPassword}"></i>
+                                                        </button>
+                                                    </div>
+                                                    <app-validator [control]="password"></app-validator>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <div class="float-end">
+                                                        <!-- <a href="#" (click)="isLogin=false" class="text-light">
+                                                            {{'AUTH.FORGOT_PASSWORD?' | translate}}
+                                                        </a> -->
+                                                    </div>
+                                                    <label for="password"
+                                                           class="">{{'AUTH.PASSWORD'| translate }}</label>
+                                                    <div class="input-group auth-pass-inputgroup">
+                                                        <input [type]="isShowPassword ? 'text' : 'password'"
+                                                               class="form-control"
+                                                               name="oldPassword"
+                                                               id="oldPassword"
+                                                               [(ngModel)]="resetPassword.newPassword"
+                                                               #password="ngModel"
+                                                               required
+                                                               placeholder="Enter new password"
+                                                               aria-label="Password"
+                                                               aria-describedby="password-addon">
+                                                        <button class="btn btn-light text-primary" type="button"
+                                                                (click)="toggleFieldTextType()"
+                                                                id="password-addon">
+                                                            <i class="fas "
+                                                               [ngClass]="{'fa-eye': !isShowPassword, 'fa-eye-slash': isShowPassword}"></i>
+                                                        </button>
+                                                    </div>
+                                                    <app-validator [control]="password"></app-validator>
+                                                </div>
+
+                                                <div class="mt-3 d-grid">
+                                                    <button class="btn btn-primary btn-block"
+                                                            type="submit">
+                                                        {{'AUTH.resetPassword' | translate}}
+                                                    </button>
+                                                </div>
+
+                                                </form>
+                                        </ng-container>
+                                        
+
+                                        <div class="row">
+                                            <div class="col-12 mt-4">
+                                                <div class="dropdown d-block" ngbDropdown>
+                                                    <button type="button"
+                                                            class="btn w-100 header-item btn-block rounded herder-item-light"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" ngbDropdownToggle>
+                                                        <img class="" *ngIf="selectedLanguage"
+                                                             src="{{selectedLanguage.flag}}"
+                                                             alt="Header Language"
+                                                             height="16">
+                                                        <span class="align-middle ms-2">{{selectedLanguage.text}}</span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item"
+                                                           *ngFor="let item of listLang"
+                                                           (click)="setLanguage(item)"
+                                                           [ngClass]="{'active': selectedLanguage === item}">
+                                                            <img src="{{item.flag}}" alt="user-image" class="me-1"
+                                                                 height="12"> <span class="align-middle">{{item.text}}</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container fluid -->
+</div>
+
+
+

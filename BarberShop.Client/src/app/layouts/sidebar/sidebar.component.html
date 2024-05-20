@@ -1,0 +1,52 @@
+<div class="vertical-menu">
+    <div class="h-100">
+        <div id="sidebar-menu">
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <ng-container *ngFor="let item of menuItems">
+                    <li>
+                        <a *ngIf="hasItems(item) && hasPermission(item.code)" [ngClass]="{'has-arrow': !item.badge, 'has-dropdown': item.badge}" class="is-parent"
+                           href="javascript:void(0);">
+                            <i class="{{ item.icon}}"></i>
+                            <span> {{ item.label | translate }}</span> 
+                            <span *ngIf="item.badge"
+                                  class="badge rounded-pill float-end bg-soft-{{item.badge.variant}} text-danger">{{item.badge.text
+                                | translate}}</span>
+                        </a>
+
+                        <a *ngIf="!hasItems(item) && hasPermission(item.code)" [routerLink]="item.link" class="side-nav-link-ref"
+                           routerLinkActive="active">
+                            <i *ngIf="item.icon" class="{{item.icon}}"></i>
+                            <span> {{ item.label | translate }}</span>
+                            <span *ngIf="item.badge"
+                                  class="badge rounded-pill bg-soft-{{item.badge.variant}} float-end">{{item.badge.text
+                                | translate}}</span>
+                        </a>
+
+                        <ul *ngIf="hasItems(item)" aria-expanded="false" class="sub-menu">
+                            <li *ngFor="let subitem of item.subItems">
+                                <a *ngIf="!hasItems(subitem) && hasPermission(subitem.code)"   [attr.data-parent]="subitem.parentId" [routerLink]="subitem.link"
+                                   class="side-nav-link-ref" routerLinkActive="active">
+                                    {{ subitem.label | translate}}
+                                </a>
+                                <a *ngIf="hasItems(subitem) && hasPermission(subitem.code)" [attr.data-parent]="subitem.parentId"
+                                   class="side-nav-link-a-ref has-arrow"
+                                   href="javascript:void(0);">
+                                    {{ subitem.label | translate}}
+                                </a>
+                                <ul *ngIf="hasItems(subitem) && hasPermission(subitem.code)" aria-expanded="false" class="sub-menu mm-collapse">
+                                    <li  *ngFor="let subSubitem of subitem.subItems" >
+                                        <a   [attr.data-parent]="subSubitem.parentId" [routerLink]="subSubitem.link"
+                                           class="side-nav-link-ref"
+                                           routerLinkActive="active">
+                                            {{ subSubitem.label | translate }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-sm-12 col-xlg-4 col-md-6 col- d-flex align-items-center mb-3 justify-content-between">
+        <div class="list-avatar text-center  sm">
+            <span class="card-img  fas fa-address-card text-secondary"></span>
+        </div>
+        <div class="card-body py-2 mx-1">
+            <p class="card-text m-0 text-muted">{{'Phone Number' | translate}} : </p>
+            <p class="card-text m-0 text-dark fw-bolder fw-bolder">{{entity.phoneNumber}}</p>
+        </div>
+    </div>
+    <div class="col-sm-12 col-xlg-4 col-md-6 col- d-flex align-items-center mb-3 justify-content-between">
+        <div class="list-avatar text-center  sm">
+            <span class="card-img  fas fa-address-card text-secondary"></span>
+        </div>
+        <div class="card-body py-2 mx-1">
+            <p class="card-text m-0 text-muted">{{'Full Name' | translate}} : </p>
+            <p class="card-text m-0 text-dark fw-bolder fw-bolder">{{entity.fullName}}</p>
+        </div>
+    </div>
+    <div class="col-sm-12 col-xlg-4 col-md-6 col- d-flex align-items-center mb-3 justify-content-between">
+        <div class="list-avatar text-center  sm">
+            <span class="card-img  fas fa-address-card text-secondary"></span>
+        </div>
+        <div class="card-body py-2 mx-1">
+            <p class="card-text m-0 text-muted">{{'Position' | translate}} : </p>
+            <p class="card-text m-0 text-dark fw-bolder fw-bolder">{{entity.position}}</p>
+        </div>
+    </div>
+  
+    <div class="col-sm-12 col-xlg-4 col-md-6 col- d-flex align-items-center mb-3 justify-content-between">
+        <div class="list-avatar text-center  sm">
+            <span class="card-img  fas fa-address-card text-secondary"></span>
+        </div>
+        <div class="card-body py-2 mx-1">
+            <p class="card-text m-0 text-muted">{{'Start Date' | translate}} : </p>
+            <p class="card-text m-0 text-dark fw-bolder fw-bolder">{{entity.employmentStartDate | date:'short'}}</p>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-xlg-4 col-md-6 col- d-flex align-items-center mb-3 justify-content-between">
+        <div class="list-avatar text-center  sm">
+            <span class="card-img  fas fa-address-card text-secondary"></span>
+        </div>
+        <div class="card-body py-2 mx-1">
+            <p class="card-text m-0 text-muted">{{'End Date' | translate}} : </p>
+            <p class="card-text m-0 text-dark fw-bolder fw-bolder">{{entity.employmentEndDate | date:'short'}}</p>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-xlg-4 col-md-6 col- d-flex align-items-center mb-3 justify-content-between">
+        <div class="list-avatar text-center  sm">
+            <span class="card-img  fas fa-address-card text-secondary"></span>
+        </div>
+        <div class="card-body py-2 mx-1">
+            <p class="card-text m-0 text-muted">{{'Salary Calculation Type' | translate}} : </p>
+            <p class="card-text m-0 text-dark fw-bolder fw-bolder">{{(salaryCalculationType[entity.salaryCalculationType - 1]) | translate}}</p>
+        </div>
+    </div>
+    <div *ngIf="entity.salaryCalculationType != 2" class="col-sm-12 col-xlg-4 col-md-6 col- d-flex align-items-center mb-3 justify-content-between">
+        <div class="list-avatar text-center  sm">
+            <span class="card-img  fas fa-address-card text-secondary"></span>
+        </div>
+        <div class="card-body py-2 mx-1">
+            <p class="card-text m-0 text-muted">{{'Fixed' | translate}} : </p>
+            <p class="card-text m-0 text-dark fw-bolder fw-bolder">{{entity.fixedValue}}</p>
+        </div>
+    </div>
+    <div *ngIf="entity.salaryCalculationType != 1" class="col-sm-12 col-xlg-4 col-md-6 col- d-flex align-items-center mb-3 justify-content-between">
+        <div class="list-avatar text-center  sm">
+            <span class="card-img  fas fa-address-card text-secondary"></span>
+        </div>
+        <div class="card-body py-2 mx-1">
+            <p class="card-text m-0 text-muted">{{'Percentage' | translate}} : </p>
+            <p class="card-text m-0 text-dark fw-bolder fw-bolder">{{entity.percentageValue}}</p>
+        </div>
+    </div>
+
+   
+ 
+</div>

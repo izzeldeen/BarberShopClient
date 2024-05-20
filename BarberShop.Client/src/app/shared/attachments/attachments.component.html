@@ -1,0 +1,101 @@
+<h1 class="card-title">{{'attachment.attachments' | translate}}</h1>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table  table-bordered">
+            <thead>
+            <tr>
+                <th *ngIf="typeCode == 'ProductAttachments'">
+                    {{'attachment.isPrimary' | translate}}
+                </th>
+
+                <th>{{'attachment.description' | translate}}</th>
+                <th>
+            <span *ngIf="!isView">
+              {{'attachment.chooseFile' | translate}}
+            </span>
+
+                    <span *ngIf="isView">
+              {{'attachment.file' | translate}}
+            </span>
+                </th>
+                <th>{{'attachment.action' | translate}}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let attach of viewAttachments; let i = index">
+
+                <td *ngIf="typeCode == 'ProductAttachments'">
+                    <input type="checkbox"
+                           id="isPrimaryView"
+                           name="isPrimaryView"
+                           #isPrimaryView="ngModel"
+                           [(ngModel)]="attach.isPrimary"
+                           disabled/>
+                </td>
+
+
+                <td>
+                    <p>{{attach.caption}}</p>
+                </td>
+
+                <td>
+                    <img (click)="attachmentClick(attach)" [src]="attach.icon" class="mr-3 rounded" width="60"/>
+                </td>
+
+                <td>
+                    <button type="button"
+                            *ngIf="!isView"
+                            class="btn  btn-danger"
+                            (click)="deleteAttachment(i,attach)"
+                            title="{{'general.DELETE' | translate}}">
+                        <span class="fa fa-trash"></span>
+                        {{'general.DELETE' | translate}}
+                    </button>
+                </td>
+
+            </tr>
+            <tr *ngIf="attachment">
+
+                <td *ngIf="typeCode == 'ProductAttachments'">
+                    <div class="form-check">
+                        <input type="checkbox"
+                               class="form-check-input"
+                               id="isPrimary"
+                               name="isPrimary"
+                               #isPrimary="ngModel"
+                               [(ngModel)]="attachment.isPrimary"/>
+                        <label class="form-check-label">{{'attachment.setPrimary' | translate}}</label>
+                    </div>
+
+                </td>
+
+                <td>
+                    <!--<mat-form-field [dir]="direction" appearance="outline">-->
+                    <!--label for="caption"></label>-->
+                    <input id="caption" name="caption" [disabled]="isView"
+                           class="form-control form-control"
+                           placeholder="{{'attachment.description' | translate}}"
+                           #caption="ngModel" type="text"
+                           [(ngModel)]="attachment.caption">
+                </td>
+                <td>
+                    <input #fileUploader type="file" required name="type" [accept]="allowedFiles"
+                           (change)="onSelectFiles($event)" [disabled]="isView"/>
+                    <div class="text-danger" *ngIf="invalidFile">{{'general.invalidFile' | translate}}</div>
+
+                </td>
+                <td>
+                    <button type="button"
+                            class="btn btn-primary"
+                            (click)="addAttachment()"
+                            title="{{'general.upload' | translate}}" [disabled]="!isValidAttachment()">
+                        <span class="fa fa-plus"></span>
+                        {{'general.upload' | translate}}
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

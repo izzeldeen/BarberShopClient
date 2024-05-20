@@ -1,0 +1,111 @@
+<div class="card">
+    <div class="card-body p-0">
+        <ngb-accordion #acc="ngbAccordion" [activeIds]="activeIds" [closeOthers]="true" class="search-accordian">
+            <ngb-panel id="collapse-search">
+                <ng-template ngbPanelTitle>
+                    <h4 class="m-0 text-primary">{{'Search' | translate}}</h4>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold text-muted" for="fromDate">
+                                {{'From Date' | translate}}
+                            </label>
+        
+                            <input class="form-control"
+                                   id="fromDate" 
+                                   name="fromDate" 
+                                   type="date"
+                                   #fromDate="ngModel"
+                                   required
+                                   [(ngModel)]="filter.fromDate">
+                            <app-validator [control]="fromDate"></app-validator>
+                        </div>
+                   
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold text-muted" for="toDate">
+                                {{'To Date' | translate}}
+                            </label>
+        
+                            <input class="form-control"
+                                   id="toDate" 
+                                   name="toDate" 
+                                   type="date"
+                                   #toDate="ngModel"
+                                   required
+                                   [(ngModel)]="filter.toDate">
+                            <app-validator [control]="toDate"></app-validator>
+                        
+                    </div>
+
+                </div>
+
+
+
+                    <div class="d-flex flex-wrap gap-2 text-end mt-2 align-items-end justify-content-end">
+                        <button (click)="reset()"
+                                class="btn btn-outline-secondary waves-effect btn-rounded waves-light"
+                                type="button">
+                            {{'Clear' | translate}}
+                        </button>
+                        <button (click)="search()"
+                                class="btn btn-primary waves-effect btn-rounded waves-light"
+                                type="button">
+                            {{'Search' | translate}}
+                        </button>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex flex-wrap gap-2 text-end my-2 align-items-center justify-content-end">
+
+            <button class="btn btn-secondary waves-effect btn-rounded waves-light"
+                    (click)="this.manageItem()"
+                    type="button">
+                 {{'Add' | translate}}
+            </button>
+        </div>
+        <app-responsive-table [dataOfTable]="tableCollection" [pageIndex]="(filter.pageIndex - 1)"></app-responsive-table>
+    </div>
+</div>
+
+<ng-template #detailsContent let-offcanvas>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-primary" id="offcanvasScrollingLabel">
+            <span *ngIf="selectedLanguage.lang == 'en'">{{'Employee' | translate}} {{'Details' | translate}} </span>
+            <span *ngIf="selectedLanguage.lang =='ar'"> {{'Details' | translate}} {{'Employee' | translate}}</span>
+        </h5>
+        <button (click)="offcanvas.dismiss('dismiss')" aria-label="Close" class="btn-close text-reset"
+                data-bs-dismiss="offcanvas" type="button"></button>
+    </div>
+    <div class="offcanvas-body">
+       <app-employee-details [id]="this.selected.id"></app-employee-details> 
+    </div>
+</ng-template>
+
+<ng-template #deleteContent let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">{{'Delete employee' | translate}}</h5>
+        <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')"
+                aria-hidden="true"></button>
+    </div>
+    <div class="modal-body">
+        <p>{{'general.deleteConfirmationMessage' | translate}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary"
+                (click)="modal.close('Close click')">
+            {{'general.cancel' | translate}}
+        </button>
+        <button (click)="delete()" type="button" class="btn btn-danger">{{'general.DELETE' | translate}}</button>
+    </div>
+</ng-template>
+
+
+

@@ -1,0 +1,17 @@
+<div id="layout-wrapper">
+    <!-- Top Bar -->
+    <app-topbar (mobileMenuButtonClicked)="onToggleMobileMenu()">
+    </app-topbar>
+    <app-sidebar></app-sidebar>
+    <div class="main-content" id="mainContent">
+
+        <div class="page-content">
+            <h5>{{title | translate}}</h5>
+            <div class="container-fluid">
+                <!-- content -->
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

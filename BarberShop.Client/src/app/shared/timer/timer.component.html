@@ -1,0 +1,16 @@
+<div  class="row text-center">
+  <div class="col-12">
+
+    <p *ngIf="!isExpired" class="ion-no-padding">
+      <span class="text-muted">{{'GENERAL.EXPIRED_ON' | translate}}</span>
+      <br>
+     <!-- <span *ngIf="days">{{days}}</span>
+      <span *ngIf="hours"> {{hours}}H</span>-->
+      <span class="text-primary">  {{minutes}}    {{'GENERAL.MINUTES' | translate}}</span>
+      <span class="text-primary"> {{'GENERAL.AND' | translate}} {{seconds}}  {{'GENERAL.SECONDS' | translate}}</span>
+    </p>
+    <h3 *ngIf="isExpired" class="text-danger">
+     {{'GENERAL.EXPIRED' | translate}}
+    </h3>
+  </div>
+</div>

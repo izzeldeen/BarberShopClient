@@ -1,0 +1,151 @@
+
+
+<div class="card">
+
+    <div class="card-header pb-0">
+        <h1 *ngIf="!entityDetails?.id" class="card-title mt-1 mb-0 " >
+            {{'Create Service' | translate}}
+        </h1>
+        <h1 *ngIf="entityDetails?.id" class="card-title mt-1 mb-0 " >
+            {{'Update Employee' | translate}}
+        </h1>
+    </div>
+    <div class="card-body">
+        <form #manageEntityForm="ngForm" (ngSubmit)="save(manageEntityForm)" class="py-5 px-3">
+
+            <div class="row">
+
+                <div  class="col-md-4">
+                    <label class="form-label fw-bold text-muted"> 
+                        {{'Category' | translate}} 
+                    </label>
+                    <ng-select 
+                    [(ngModel)]="entityDetails.categoryId" [items]="dllCategories"
+                     bindLabel="viewValue" bindValue="value" name="categoryId" required
+                     #categoryId='ngModel'
+                     placeholder="{{'Select' | translate }}"
+                     
+                     >
+              <ng-template let-item="item" ng-label-tmp>
+                  {{item.viewValue}}
+              </ng-template>
+              <ng-template let-item="item" ng-option-tmp>
+                  {{item.viewValue }}
+              </ng-template>
+          </ng-select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-muted" for="name">
+                        {{'Name' | translate}} <span class="text-danger">*</span>
+                    </label>
+
+                    <input class="form-control"
+                           id="name" name="name" type="text" #name="ngModel"
+                           [minLength]="1"
+                           autocomplete="new-title"
+                           required
+                           [(ngModel)]="entityDetails.name">
+
+
+                    <app-validator [control]="name"></app-validator>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-muted" for="duration">
+                        {{'Duration' | translate}} <span class="text-danger">*</span>
+                    </label>
+
+                    <input class="form-control"
+                           id="duration" name="duration" type="number" #duration="ngModel"
+                           [minLength]="1"
+                           autocomplete="new-title"
+                           required
+                           [(ngModel)]="entityDetails.duration">
+
+
+                    <app-validator [control]="duration"></app-validator>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-muted" for="amount">
+                        {{'Amount' | translate}} <span class="text-danger">*</span>
+                    </label>
+
+                    <input class="form-control"
+                           id="amount" name="amount" type="number" #amount="ngModel"
+                           [minLength]="1"
+                           autocomplete="new-title"
+                           required
+                           [(ngModel)]="entityDetails.amount">
+
+
+                    <app-validator [control]="amount"></app-validator>
+                </div>
+
+                <div class="col-4">
+                    <label class="form-label fw-bold text-muted" for="isDiscountApply">
+                        {{'Apply Discount' | translate}}</label>
+                    <div class="form-check form-switch-md form-switch" dir="ltr">
+                        <input [(ngModel)]="entityDetails.isDiscountApply" name="isDiscountApply" type="checkbox"
+                               class="form-check-input"
+                               id="isDiscountApply">
+                    </div>
+                </div>
+               
+                <ng-container *ngIf="entityDetails.isDiscountApply"> 
+                    <div  class="col-md-4">
+                        <label class="form-label fw-bold text-muted"> 
+                            {{'Discount Type' | translate}} 
+                        </label>
+                        <ng-select 
+                        [(ngModel)]="entityDetails.discountPriceType" [items]="dllDiscountType"
+                         bindLabel="viewValue" bindValue="value" name="discountPriceType" required
+                         #discountPriceType='ngModel'
+                         placeholder="{{'Select' | translate }}"
+                         
+                         >
+                  <ng-template let-item="item" ng-label-tmp>
+                      {{item.viewValue}}
+                  </ng-template>
+                  <ng-template let-item="item" ng-option-tmp>
+                      {{item.viewValue }}
+                  </ng-template>
+              </ng-select>
+                    </div>
+    
+                    <div   class="col-md-4">
+                        <label class="form-label fw-bold text-muted" for="discountValue">
+                            {{'Discount Value' | translate}} <span class="text-danger">*</span>
+                        </label>
+    
+                        <input class="form-control"
+                               id="discountValue" name="discountValue" type="number" #discountValue="ngModel"
+                               [minLength]="1"
+                               autocomplete="new-title"
+                               required
+                               [(ngModel)]="entityDetails.discountValue">
+    
+    
+                        <app-validator [control]="discountValue"></app-validator>
+                    </div>
+                </ng-container>
+              
+
+        </div>
+        
+
+            <div class="d-flex flex-wrap gap-2 text-end mt-2 align-items-end justify-content-end">
+                <button  (click)="backToList()"
+                class="btn btn-outline-secondary waves-effect btn-rounded waves-light"
+                type="button">{{'Discard' | translate}}</button>
+        
+                <button 
+                        class="btn btn-primary waves-effect btn-rounded waves-light"
+                        type="submit">
+                    {{'Save' | translate}}
+                </button>
+            </div>
+
+          
+        </form>
+    </div>
+</div>
