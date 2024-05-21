@@ -28,7 +28,7 @@ $sidebar-dark-menu-item-hover-color: var(--#{$prefix}sidebar-dark-menu-item-hove
 $sidebar-dark-menu-item-active-color: var(--#{$prefix}sidebar-dark-menu-item-active-color);
 
 // Topbar - Deafult Light
-$header-height: 70px;
+$header-height: 75px;
 $header-bg: var(--#{$prefix}header-bg);
 $header-item-color: var(--#{$prefix}header-item-color);
 
@@ -121,7 +121,7 @@ $grays: (
 // $blue: #003b70;
 // $darkblue: #178bc9;
 $blue: #a68b2a ;
-$darkblue: #0b0c0c;
+$darkblue: #F2ECE3;
 $lightblue: #009EE3;
 $light: #f4f5f8;
 $indigo: #564ab1;
@@ -132,7 +132,8 @@ $orange: #e3a320;
 $yellow: #ffbf53;
 $green: #1a7a40;
 $teal: #050505;
-$cyan: #f5fcff;
+$cyan: #595959;
+$white:#ffffff;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map

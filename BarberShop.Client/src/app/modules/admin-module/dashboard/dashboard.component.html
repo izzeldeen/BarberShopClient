@@ -1,136 +1,172 @@
-  
-  <div class="card" >
-    <div class="card-header">
-    <h4 class="m-0 text-primary">{{'Search' | translate}}</h4>
-    </div>
-    <div class="card-body" >
-          <div class="row"> 
-            <div class="col-md-4">
-                <label class="form-label fw-bold text-muted"> 
-                    {{'Employees' | translate}} 
+<div class="card">
+    <!-- <div class="card-header">
+     <h4 class="m-0 text-primary">{{'Search' | translate}}</h4>
+     </div>-->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted">
+                    {{ 'Employees' | translate }}
                 </label>
-                <ng-select 
-                          [(ngModel)]="filter.employeeId" [items]="dllEmployees"
-                           bindLabel="viewValue" bindValue="value" name="employee" required
-                           #employee='ngModel'
-                           placeholder="{{'Select' | translate }}"
-                           (change)="getPipeCharts()"
-                           >
+                <ng-select
+                        [(ngModel)]="filter.employeeId" [items]="dllEmployees"
+                        bindLabel="viewValue" bindValue="value" name="employee" required
+                        #employee='ngModel'
+                        placeholder="{{'Select' | translate }}"
+                        (change)="getPipeCharts()"
+                >
                     <ng-template let-item="item" ng-label-tmp>
-                        {{item.viewValue}}
+                        {{ item.viewValue }}
                     </ng-template>
                     <ng-template let-item="item" ng-option-tmp>
-                        {{item.viewValue }}
+                        {{ item.viewValue }}
                     </ng-template>
                 </ng-select>
-             
+
             </div>
-         
-        
-            <div class="col-md-4">
-                <label class="form-label fw-bold text-muted"> 
-                    {{'Months' | translate}} 
+
+
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted">
+                    {{ 'Months' | translate }}
                 </label>
-                <ng-select 
-                          [(ngModel)]="filter.monthId" [items]="dllMonths"
-                           bindLabel="viewValue" bindValue="value" name="clients" required
-                           #employee='ngModel'
-                           placeholder="{{'Select' | translate }}"
-                           (change)="getPipeCharts()"
-                           >
+                <ng-select
+                        [(ngModel)]="filter.monthId" [items]="dllMonths"
+                        bindLabel="viewValue" bindValue="value" name="clients" required
+                        #employee='ngModel'
+                        placeholder="{{'Select' | translate }}"
+                        (change)="getPipeCharts()"
+                >
                     <ng-template let-item="item" ng-label-tmp>
-                        {{item.viewValue}}
+                        {{ item.viewValue }}
                     </ng-template>
                     <ng-template let-item="item" ng-option-tmp>
-                        {{item.viewValue }}
+                        {{ item.viewValue }}
                     </ng-template>
                 </ng-select>
-             
-            </div>
-          </div>
-    </div>
-  </div>
 
-
-    <div class="row" >
-        <div class="col-md-3" >
-            <div class="card"> 
-            <div class="card-body">
-               <h5>Total Amount</h5>
-               <strong> {{transactionsAmounts?.totalAmount | currency }}</strong>
-            </div>
             </div>
         </div>
-        <div class="col-md-3" >
-            <div class="card"> 
-            <div class="card-body">
-               <h5>Discount Amount</h5>
-               <strong> {{transactionsAmounts?.discountAmount | currency }} </strong>
-            </div>
-            </div>
-        </div>
- 
-        <div class="col-md-3" >
-            <div class="card"> 
-            <div class="card-body">
-               <h5>Net Amount </h5> 
-               <strong> {{transactionsAmounts?.netAmount | currency }} </strong>
-            </div>
-            </div>
-        </div>
- 
-        <div class="col-md-3" >
-            <div class="card"> 
-            <div class="card-body">
-               <h5>Gross Profit Amount</h5>
-               <strong> {{transactionsAmounts?.grossProfitAmount  | currency }} </strong>
-            </div>
-            </div>
-        </div>
- 
- 
-   </div>
-
-<div class="card" *ngIf="employeesCollectedAmontChart?.series?.length > 0"> 
-<div class="card-body">
-    <div class="row"  >
-        <div class="col-md-4"  >
-            <h3 >Employees Total Amounts</h3>
-             <app-pipe-chart
-             [series]="employeesCollectedAmontChart.series"
-             [labels]="employeesCollectedAmontChart.labels"
-             ></app-pipe-chart>
-        </div>
-        <div class="col-md-4" *ngIf="employeesServingClientChart?.series?.length > 0">
-            <h3 >Employees Clients Serving </h3>
-            <app-pipe-chart
-            [series]="employeesServingClientChart.series"
-             [labels]="employeesServingClientChart.labels"
-            ></app-pipe-chart>
-       </div>
-       <div class="col-md-4" *ngIf="employeesServicesChart?.series?.length > 0" >
-        <h3 >Employees Services</h3>
-        <app-pipe-chart
-             [series]="employeesServicesChart.series"
-             [labels]="employeesServicesChart.labels"
-        ></app-pipe-chart>
-    </div>
     </div>
 </div>
 
-    </div>
 
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
 
-
-    <div class="card" *ngIf="barChartCategories?.length > 0 && barChartSeries?.length > 0">
-        <div class="card-body">
-            <div class="row" >
-                <div class="col-md-12">
-                    <app-bar-chart
-                      [categories]="barChartCategories"
-                      [series]="barChartSeries"
-                    ></app-bar-chart>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p>Total Amount</p>
+                        <h5 class="text-warning"> {{ transactionsAmounts?.totalAmount | currency }}</h5>
+                    </div>
+                    <div>
+                        <i class=" text-danger fas fa-cash-register fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p>Discount Amount</p>
+                        <h5 class="text-danger"> {{ transactionsAmounts?.discountAmount | currency }} </h5>
+                    </div>
+                    <div>
+                        <i class="fa text-danger fa-percent fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p>Net Amount </p>
+                        <h5 class="text-info-emphasis"> {{ transactionsAmounts?.netAmount | currency }} </h5>
+                    </div>
+                    <div>
+                        <i class="fas fa-filter text-info-emphasis fa-2x"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p>Gross Profit Amount</p>
+                        <h5 class="text-success"> {{ transactionsAmounts?.grossProfitAmount  | currency }} </h5>
+                    </div>
+                    <div>
+                        <i class=" text-info-emphasis fas fa-money-bill-wave fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="row" *ngIf="employeesCollectedAmontChart?.series?.length > 0">
+    <div class="col-md-4 text-center">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="mb-5">Employees Total Amounts</h5>
+                <app-pipe-chart
+                        [series]="employeesCollectedAmontChart.series"
+                        [labels]="employeesCollectedAmontChart.labels"
+                ></app-pipe-chart>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 text-center" *ngIf="employeesServingClientChart?.series?.length > 0">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="mb-5">Employees Clients Serving </h5>
+                <app-pipe-chart
+                        [series]="employeesServingClientChart.series"
+                        [labels]="employeesServingClientChart.labels"
+                ></app-pipe-chart>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 text-center" *ngIf="employeesServicesChart?.series?.length > 0">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="mb-5">Employees Services</h5>
+                <app-pipe-chart
+                        [series]="employeesServicesChart.series"
+                        [labels]="employeesServicesChart.labels"
+                ></app-pipe-chart>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card" *ngIf="barChartCategories?.length > 0 && barChartSeries?.length > 0">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <app-bar-chart
+                        [categories]="barChartCategories"
+                        [series]="barChartSeries"
+                ></app-bar-chart>
+            </div>
+        </div>
+    </div>
+</div>

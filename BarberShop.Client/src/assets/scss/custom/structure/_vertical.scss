@@ -55,7 +55,7 @@
 .main-content {
   margin-left: $sidebar-width;
   overflow: hidden;
-  background-color: #cccccc;
+  //background-color: #cccccc;
 
   .content {
     padding: 0 15px 10px 15px;
@@ -521,19 +521,19 @@ body[data-sidebar-size="md"] {
 
 body[data-sidebar="brand"] {
   .vertical-menu {
-    background-color: $primary;
+    background-color: $secondary;
     /*background-image: linear-gradient(331deg, #517093 3%, $secondary 44%, $secondary 100%);*/
 
     ul > li > a {
-      border-top: 6px solid $primary !important;
-      border-bottom: 6px solid $primary !important;
+      border-top: 6px solid $secondary !important;
+      border-bottom: 6px solid $secondary !important;
       //border-left: 5px solid $secondary !important;
     }
   }
 
   .navbar-brand-box {
-    background-color: $primary;
-    padding-top: 9px;
+    background-color: $secondary;
+    padding-top: 3px;
     height: 74px;
 
     .logo-dark {
@@ -551,30 +551,47 @@ body[data-sidebar="brand"] {
 
 
   .mm-active {
-    color: #ffffff !important;
+    color: $primary !important;
 
     > a {
-      border-left: 5px solid $secondary !important;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        content: " ";
+        /* font-size: 20px; */
+        width: 0;
+        height: 0;
+        /* border-left: 22px solid transparent; */
+        border-right: 22px solid white;
+        border-top: 22px solid transparent;
+        border-bottom: 22px solid transparent;
+        right: -5px;
+        font-family: sans-serif;
+        top: 0;
+      }
+
+      //border-left: 5px solid $red !important;
       border-radius: 5px;
 
-      color: #ffffff !important;
+      color: $dark !important;
 
       i {
-        color: #ffffff !important;
+        color: $dark !important;
       }
 
       svg {
-        color: #ffffff !important;
-        fill: rgba(#ffffff, 0.1) !important;
+        color: $dark !important;
+        fill: rgba($dark, 0.1) !important;
       }
     }
 
     .active {
-      color: #ffffff !important;
+      color: $dark !important;
 
       svg {
-        color: #ffffff !important;
-        fill: rgba(#ffffff, 0.1) !important;
+        color: $dark !important;
+        fill: rgba($dark, 0.1) !important;
       }
     }
   }
@@ -620,38 +637,41 @@ body[data-sidebar="brand"] {
     ul {
       li {
         &.menu-title {
-          color: rgba($white, 0.6);
+          color: $primary;
         }
 
         a {
-          color: rgba($white, 0.6);
+          position: relative;
+          color: $primary;
 
           span {
             font-size: 15px;
             line-height: 1.40625rem;
             vertical-align: middle;
+            font-weight: bolder;
           }
 
           i {
-            color: rgba($white, 0.6);
+            color: rgba($primary, 0.6);
+            font-weight: bolder;
           }
 
           svg {
-            color: rgba($white, 0.6);;
-            fill: rgba($white, 0.075);
+            color: rgba($primary, 0.6);;
+            fill: rgba($primary, 0.075);
           }
 
           &.waves-effect {
             .waves-ripple {
-              background: rgba($white, 0.1);
+              background: rgba($primary, 0.1);
             }
           }
 
           &:hover {
-            color: $white;
+            color: $dark;
 
             i {
-              color: $white;
+              color: $dark;
             }
           }
         }
@@ -659,10 +679,10 @@ body[data-sidebar="brand"] {
         ul.sub-menu {
           li {
             a {
-              color: rgba($white, .5);
+              color: rgba($dark, .5);
 
               &:hover {
-                color: $white;
+                color: $dark;
               }
             }
           }
@@ -756,7 +776,7 @@ body[data-sidebar="brand"] {
               li {
                 a {
                   &:hover {
-                    color: $sidebar-menu-item-active-color;
+                    color: $sidebar-menu-item-active-color !important;
                   }
                 }
 

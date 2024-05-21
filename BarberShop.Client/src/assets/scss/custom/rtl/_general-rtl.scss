@@ -10,6 +10,30 @@ body {
   text-align: right;
 }
 
+.mm-active {
+  color: $primary !important !important;
+
+  > a {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: " ";
+      /* font-size: 20px; */
+      width: 0;
+      height: 0;
+      border-left: 22px solid white !important;
+      border-right: 22px solid transparent !important;
+      border-top: 22px solid transparent;
+      border-bottom: 22px solid transparent;
+      right: auto !important;
+      left: -5px !important;
+      font-family: sans-serif;
+      top: 0;
+    }
+  }
+}
+
 body[data-sidebar="brand"] {
   #sidebar-menu ul > li > a:before {
     right: -6px;
@@ -132,6 +156,7 @@ body[data-sidebar="brand"] {
           }
         }
       }
+
       padding-top: 30px;
     }
   }

@@ -2,23 +2,25 @@
     <div class="navbar-header">
         <div class="d-flex justify-content-center align-items-center">
             <!-- LOGO -->
-            <div class="navbar-brand-box pt-2">
+            <div class="navbar-brand-box">
                 <a class="logo logo-dark">
                     <span class="logo-sm">
-                        <img alt="" height="100" src="assets/images/logo.jpg">
+                        <img alt="" height="100" src="assets/images/transparent-logo.jpg">
                     </span>
                     <span class="logo-lg">
-                        <img alt="" height="100" src="assets/images/logo.jpg" (click)="navigateToDashboard()"> <span class="logo-txt"></span>
+                        <img alt="" height="100" src="assets/images/transparent-logo.jpg"
+                             (click)="navigateToDashboard()"> <span class="logo-txt"></span>
                     </span>
                 </a>
 
-                <a class="logo logo-light text-center p-2">
+                <a class="logo logo-light text-center ">
                     <span class="logo-sm">
-                        <img alt="" height="60" width="60" src="assets/images/logo.jpg">
+                        <img alt="" height="40" width="40" src="assets/images/transparent-logo.jpg">
                     </span>
                     <span class="logo-lg">
-                        <img alt="" height="60" width="60" src="assets/images/logo.jpg"  (click)="navigateToDashboard()"
-                        > <span class="logo-txt"></span>
+                        <img alt="" height="40" width="40" src="assets/images/transparent-logo.jpg"
+                             (click)="navigateToDashboard()"
+                        > <p class="logo-txt text-dark">Barber Shop</p>
                     </span>
                 </a>
             </div>
@@ -28,20 +30,20 @@
                     type="button">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
-           
-           
+           <!-- <h5>{{ title | translate }}</h5>-->
+
 
         </div>
 
 
         <div class="d-flex justify-content-center align-items-center">
             <div class="dropdown  d-sm-inline-block" ngbDropdown>
-                <button aria-expanded="false" aria-haspopup="true" class="btn header-item rounded herder-item-light"
+                <button aria-expanded="false" aria-haspopup="true" class="btn header-item rounded "
                         data-bs-toggle="dropdown"
                         ngbDropdownToggle type="button">
                     <img *ngIf="selectedLanguage" alt="Header Language" class="" height="16"
                          src="{{selectedLanguage.flag}}">
-                    <span class="align-middle ms-2">{{selectedLanguage.text}}</span>
+                    <span class="align-middle ms-2">{{ selectedLanguage.text }}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
                     <ng-container *ngFor="let item of listLang">
@@ -51,14 +53,16 @@
                            class="dropdown-item notify-item"
                            href="javascript:void(0);">
                             <img alt="user-image" class="me-1" height="12"
-                                 src="{{item.flag}}"> <span class="align-middle">{{item.text}}</span>
+                                 src="{{item.flag}}"> <span class="align-middle">{{ item.text }}</span>
                         </a>
                     </ng-container>
 
                 </div>
             </div>
-
-            <div class="dropdown d-inline-block" ngbDropdown>
+            <button class="btn btn-link mx-3 text-danger" (click)="logout()">
+                <i class="fa fa-power-off fa-2x"></i>
+            </button>
+            <!--<div class="dropdown d-inline-block" ngbDropdown>
                 <button aria-expanded="false" aria-haspopup="true"
                         class="btn header-item  d-flex justify-content-center align-items-center"
                         data-bs-toggle="dropdown" id="page-header-user-dropdown"
@@ -76,11 +80,9 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
 
-                    <a (click)="logout()" class="dropdown-item" href="javascript: void(0);">
-                        <i class="mdi mdi-logout text-muted font-size-16 align-middle me-1"></i> <span class="align-middle" key="t-logout">{{ 'LOGOUT' |translate}}</span>
-                    </a>
+
                 </div>
-            </div>
+            </div>-->
 
         </div>
     </div>

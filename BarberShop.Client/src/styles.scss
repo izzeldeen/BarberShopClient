@@ -3,16 +3,26 @@
 @import "src/assets/scss/app";
 @import "src/assets/scss/icons";
 
-.form-select{
-    padding: 2px !important;
-    width: 100%;
+.form-select {
+  padding: 2px !important;
+  width: 100%;
 }
+
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: #cccccc;
+html, body {
+  height: 100%;
 }
 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  // background-color: #cccccc;
+}
+
+.ngx-pagination .current{
+  background: var(--bs-primary) !important;
+  border-radius: 5px !important;
+}
 

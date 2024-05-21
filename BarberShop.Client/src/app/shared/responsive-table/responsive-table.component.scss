@@ -23,7 +23,6 @@
 }*/
 
 
-
 .input-group .form-control.rounded-select {
   border-radius: 0.8rem !important;
 }
@@ -39,8 +38,8 @@ table {
 
   thead {
     --bs-table-bg: var(--bs-secondary);
-    color: var(--bs-light);
-    --bs-table-color: var(--bs-light);
+    color: var(--bs-dark);
+    --bs-table-color: var(--bs-dark);
   }
 
   tr {
@@ -97,12 +96,19 @@ table {
       vertical-align: middle;
       overflow: hidden;
       text-overflow: ellipsis;
+      border-bottom: 1px solid #f4eee9 !important;
     }
   }
 
   thead tr {
     height: 45px !important;
     white-space: nowrap;
+
+  }
+
+  thead tr th {
+    border-bottom: 0 !important;
+
   }
 
 }

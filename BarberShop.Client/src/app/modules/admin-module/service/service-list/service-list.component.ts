@@ -37,10 +37,10 @@ export class ServiceListComponent  extends ListComponent<ServiceVM, ServiceVMFil
         { key: 'categoryName', display: 'Category' },
         { key: 'name', display: 'Name' },
         { key: 'duration', display: 'Duration' },
-        { key: 'amount', display: 'Amount' },
+        { key: 'amount', display: 'Amount' , type: HeaderTypes.Currency },
         { key: 'isDiscountApply', display: 'Apply Discount' , type: HeaderTypes.Boolean },
         { key: 'discountPriceTypeName', display: 'Discount Type' },
-        { key: 'discountValue', display: 'Value' }
+        { key: 'discountValue', display: 'Value',  type: HeaderTypes.Currency }
         
     ];
     this.tableCollection.actions = [

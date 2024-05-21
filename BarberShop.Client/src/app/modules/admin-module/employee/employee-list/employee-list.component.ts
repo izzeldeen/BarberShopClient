@@ -4,6 +4,7 @@ import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { ListComponent } from 'src/app/shared/list.component';
 import { EmployeeFilterVM, EmployeeVM } from 'src/app/shared/model/employee/employee.vm';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
+import {HeaderTypes} from "../../../../shared/responsive-table/enums";
 
 @Component({
   selector: 'app-employee-list',
@@ -30,10 +31,10 @@ export class EmployeeListComponent extends ListComponent<EmployeeVM, EmployeeFil
       this.tableCollection.options.isHaveAction = true;
       this.tableCollection.headers = [
         { key: 'fullName', display: 'Name' },
-        { key: 'totalAmount', display: 'Total Amount' },
-        { key: 'discountAmount', display: 'Discount Amount' },
-        { key: 'netAmount', display: 'Net Amount' },
-        { key: 'currentAmount', display: 'Current Collected Amount' }
+        { key: 'totalAmount', display: 'Total Amount' , type: HeaderTypes.Currency },
+        { key: 'discountAmount', display: 'Discount Amount' , type: HeaderTypes.Currency },
+        { key: 'netAmount', display: 'Net Amount' , type: HeaderTypes.Currency },
+        { key: 'currentAmount', display: 'Current Collected Amount' , type: HeaderTypes.Currency }
         // { key: 'phoneNumber', display: 'Phone Number' },
         // { key: 'position', display: 'Position' }
     ];
@@ -41,8 +42,8 @@ export class EmployeeListComponent extends ListComponent<EmployeeVM, EmployeeFil
       
       {
         permission: true,
-        name: 'general.edit',
-        iconName: 'mdi mdi-pencil',
+        name: 'general.assign',
+        iconName: 'mdi mdi-account-plus',
         callBack: (row: EmployeeVM) => {
             this.assignServices(row);
         }

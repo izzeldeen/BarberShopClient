@@ -26,8 +26,9 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  height: $header-height;
+  height: 75px;
   padding: 0 $grid-gutter-width 0 0;
+  box-shadow: 0px 0px 7px var(--bs-primary);
 
   .dropdown .show {
     &.header-item {
@@ -41,7 +42,7 @@
   width: $navbar-brand-box-width;
   background: $sidebar-bg;
   border-right: 1px solid $sidebar-border-color;
- // box-shadow: 0px 2px 2px $sidebar-bg;
+  // box-shadow: 0px 2px 2px $sidebar-bg;
 }
 
 .logo {
@@ -234,7 +235,7 @@ body[data-topbar="dark"] {
   .navbar-brand-box {
     background-color: $header-dark-bg;
     border-color: $header-dark-bg;
-  //  box-shadow: 0px 0px 2px var(--#{$prefix}header-bg);
+    //  box-shadow: 0px 0px 2px var(--#{$prefix}header-bg);
 
     .logo {
       color: $white !important;

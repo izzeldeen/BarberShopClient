@@ -57,7 +57,7 @@
                                 <span *ngSwitchCase="HeaderTypes.Currency"> 
                                     <span *ngIf="row[column.key];else emptyTemplate">
                                         <span *ngIf="row[column.key]">
-                                            {{ row[column.key] | currency:'':''}}  {{'GENERAL.AED' | translate}}
+                                            {{ row[column.key] | currency:'':''}}  {{'general.AED' | translate}}
                                         </span>
                                         <span class="text-warning" *ngIf="!row[column.key]">
                                             {{ 'N/A'  | translate}}
@@ -72,10 +72,10 @@
                                 <span *ngSwitchCase="HeaderTypes.MoneyUpdate" class="{{column.customClass}} fw-bolder">
                                         <span class="text-danger"
                                               *ngIf="row['transactionTypeFlag'] && row['transactionTypeFlag'] == 'D' ">
-                                            -  {{ row[column.key] | currency:'':''}}  {{'GENERAL.AED' | translate}}</span>
+                                            -  {{ row[column.key] | currency:'':''}}  {{'general.AED' | translate}}</span>
                                         <span class="text-success"
                                               *ngIf="row['transactionTypeFlag'] && row['transactionTypeFlag'] == 'C' ">
-                                            +  {{ row[column.key] | currency:'':''}}  {{'GENERAL.AED' | translate}}</span>
+                                            +  {{ row[column.key] | currency:'':''}}  {{'general.AED' | translate}}</span>
 
                                 </span>
                                 <span *ngSwitchCase="HeaderTypes.Status" class="{{column.customClass}}">
