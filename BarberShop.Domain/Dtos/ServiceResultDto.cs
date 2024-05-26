@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BarberShop.Domain.Dtos
 {
-    public class ServiceResultDto<T> where T : class
+    public class ServiceResultDto<T> 
     {
         public ServiceResultDto(ResultCodeTypes resultCode = ResultCodeTypes.BadRequest)
         {

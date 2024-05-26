@@ -31,11 +31,15 @@ namespace BarberShop.Repository
             modelBuilder.ApplyConfiguration(new ServicesEmployeesMap());
             modelBuilder.ApplyConfiguration(new AppointmentMap());
             modelBuilder.ApplyConfiguration(new AppointmentServicesMap());
+            modelBuilder.ApplyConfiguration(new TransactionMap());
+            modelBuilder.ApplyConfiguration(new CategoryMap());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionStr = "Data Source=DESKTOP-1R9SNJP;Initial Catalog=BarberShop;Integrated Security=True;TrustServerCertificate=True";
+
+          //  string connectionStr = "Data Source=DESKTOP-1R9SNJP;Initial Catalog=BarberShop;Integrated Security=True;TrustServerCertificate=True";
+             string connectionStr = "Data Source=20.46.144.183;Initial Catalog=Alqasor;Persist Security Info=True;User ID=Alqasor01;Password=SIn#Kh$300124;TrustServerCertificate=True";
             optionsBuilder.UseSqlServer(connectionStr);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using BarberShop.Domain.Enum;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ namespace BarberShop.Domain.Dtos
         public string? Email { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string Position { get; set; }
+        public string? Position { get; set; }
         public DateTime? EmploymentStartDate { get; set; }
         public DateTime? EmploymentEndDate { get; set; }
         public int? PercentageValue { get; set; }
         public double? FixedValue { get; set; }
         public SalaryCalculationType SalaryCalculationType { get; set; }
+        public IFormFile? file { get; set; }
+        public string? Description { get; set; }
     }
 }

@@ -42,7 +42,7 @@ export class EmployeeListComponent extends ListComponent<EmployeeVM, EmployeeFil
       
       {
         permission: true,
-        name: 'general.assign',
+        name: 'Assign Services',
         iconName: 'mdi mdi-account-plus',
         callBack: (row: EmployeeVM) => {
             this.assignServices(row);

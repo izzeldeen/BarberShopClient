@@ -17,12 +17,21 @@ namespace BarberShop.Domain.Entities
         public Employee Employee { get; set; }
         public double TotalAmount { get; set; }
         public virtual ICollection<AppointmentServices>? AppointmentServices { get; set; }
+        public virtual ICollection<Transaction>? Transactions { get; set; }
         public AppointmentStatus AppointmentStatus { get; set; }
         public int? UserId { get; set; }
         public User? User { get; set; }
         public int TotalServicesDuration { get; set; }
-        public double FinalPrice { get; set; }
+        public double NetAmount { get; set; }
         public double DiscountPrice { get; set; }
+        public string? EmployeeName
+        {
+            get
+            {
+                return $"{Employee?.User?.FirstName} {Employee?.User?.LastName}";
+            }
+        }
+
 
     }
 
@@ -39,8 +48,11 @@ namespace BarberShop.Domain.Entities
                 .HasForeignKey(x => x.EmployeeId);
 
             builder.HasOne(x => x.User)
-                .WithMany(x=> x.Appointments)
+                .WithMany(x => x.Appointments)
                 .HasForeignKey(x => x.UserId);
+
+            builder.Ignore(x => x.EmployeeName);
+
 
 
         }

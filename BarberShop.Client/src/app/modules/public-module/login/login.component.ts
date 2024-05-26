@@ -8,7 +8,6 @@ import {LoginVm, ResetPasswordVM} from "../../../shared/model/user/login.vm";
 import {ModuleCode} from "../../../shared/enum/module-code-enum";
 import {StorageKey} from "../../../shared/enum/storage-key-enum";
 import {UserClaimType} from "../../../shared/enum/user-claim-type.enum";
-import {StoreStatusEnum} from "../../../shared/enum/store-status-enum";
 import {NgForm} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';

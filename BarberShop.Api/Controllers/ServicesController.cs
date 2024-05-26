@@ -20,24 +20,24 @@ namespace BarberShop.Api.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = RolesName.Admin)]
-        public async Task<IActionResult> GetAll()
+        [Authorize]
+        public async Task<IActionResult> GetAll([FromQuery] ServicesFilter filter)
         {
-            var result = await servicesService.GetAll();
+            var result = await servicesService.GetAll(filter);
             return Ok(result);
         }
 
         [HttpPost]
-        [Authorize(Roles = RolesName.Barber)]
-        public async Task<IActionResult> Create(ServicesDto service)
+        [Authorize(Roles = $"{RolesName.Manager},{RolesName.Admin}")]
+        public async Task<IActionResult> Create([FromForm] ServicesDto service)
         {
             var serviceResult = await servicesService.Create(service);
             return Ok(serviceResult);
         }
 
         [HttpPut]
-        [Authorize(Roles = RolesName.Barber)]
-        public async Task<IActionResult> Update(ServicesDto service)
+        [Authorize(Roles = $"{RolesName.Manager},{RolesName.Admin}")]
+        public async Task<IActionResult> Update([FromForm] ServicesDto service)
         {
             var serviceResult = await servicesService.Update(service);
             return Ok(serviceResult);
@@ -52,7 +52,7 @@ namespace BarberShop.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = RolesName.Barber)]
+        [Authorize(Roles = $"{RolesName.Manager},{RolesName.Admin}")]
         public async Task<IActionResult> Delete(int Id)
         {
             var serviceResult = await servicesService.Delete(Id);
@@ -70,10 +70,10 @@ namespace BarberShop.Api.Controllers
         }
 
         [HttpGet("employee")]
-        [Authorize(Roles = RolesName.Employee)]
-        public async Task<IActionResult> EmplyeeServices()
+        [Authorize]
+        public async Task<IActionResult> EmplyeeServices(int? id)
         {
-            var serviceResult = await servicesService.GetEmployeeServices();
+            var serviceResult = await servicesService.GetEmployeeServices(id);
             return Ok(serviceResult);
         }
 

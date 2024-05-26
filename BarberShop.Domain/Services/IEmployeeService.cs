@@ -14,7 +14,7 @@ namespace BarberShop.Domain.Services
         Task<ServiceResultDto<RegisterDto>> RegisterEmployee(RegisterDto registerDto);
         Task<ServiceResultDto<RegisterDto>> UpdateEmployee(RegisterDto registerDto);
 
-        Task<ServiceResultDto<List<EmployeeDto>>> GetAllEmployees();
+        Task<ServiceResultDto<PageSearchResultDTO<EmployeeDto>>> GetAllEmployees(EmployeeFilter filter);
         Task<ServiceResultDto<EmployeeDto>> GetEmployeeDetails();
         Task<ServiceResultDto<EmployeeDto>> GetById(int id);
 

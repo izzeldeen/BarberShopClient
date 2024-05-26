@@ -12,8 +12,10 @@ namespace BarberShop.Domain.Entities
     {
         public int AppointmentId { get; set; }
         public int ServicesId { get; set; }
+        public int? EmployeeId { get; set; }
         public Appointment Appointment { get; set; }
         public Services Services { get; set; }
+        public Employee? Employee { get; set; }
 
     }
 
@@ -24,12 +26,16 @@ namespace BarberShop.Domain.Entities
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.Appointment)
-                .WithMany(x=> x.AppointmentServices)
+                .WithMany(x => x.AppointmentServices)
                 .HasForeignKey(x => x.AppointmentId);
 
             builder.HasOne(x => x.Services)
                .WithMany()
                .HasForeignKey(x => x.ServicesId);
+
+            builder.HasOne(x => x.Employee)
+               .WithMany(x=> x.AppointmentServices)
+               .HasForeignKey(x => x.EmployeeId);
 
             builder.Ignore(x => x.IsDeleted);
             builder.Ignore(x => x.CreatedDate);

@@ -9,5 +9,7 @@ namespace BarberShop.Domain.Filters
 {
     public class EmployeeFilter : EntityBaseFilter
     {
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
     }
 }

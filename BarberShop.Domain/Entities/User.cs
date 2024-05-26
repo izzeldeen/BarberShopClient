@@ -23,7 +23,9 @@ namespace BarberShop.Domain.Entities
         public Employee? Employee { get; set; }
         public virtual ICollection<UserRole> Roles { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
-
+        public virtual ICollection<Transaction>? Transactions  { get; set; }
+        public string? Password { get; set; }
+        public byte[]? Salt { get; set; }
         public string GetFullName() => $"{FirstName} {LastName}";
     }
 

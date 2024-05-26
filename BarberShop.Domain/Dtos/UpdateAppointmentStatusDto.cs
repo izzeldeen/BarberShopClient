@@ -11,5 +11,20 @@ namespace BarberShop.Domain.Dtos
     {
         public int Id { get; set; }
         public AppointmentStatus AppointmentStatus { get; set; }
+        public List<ServicesEmployeeSelected>? ServicesEmployeeSelected { get; set; }
+        public double CollectedPrice { get; set; }
     }
+
+    public class ServicesEmployeeSelected
+    {
+        public int ServiceId { get; set; }
+        public int EmployeeId { get; set; }
+    }
+
 }
+
+
+
+
+
+

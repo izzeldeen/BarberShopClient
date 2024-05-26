@@ -58,7 +58,7 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <p>Total Amount</p>
+                        <p>Revenue Amount</p>
                         <h5 class="text-warning"> {{ transactionsAmounts?.totalAmount | currency }}</h5>
                     </div>
                     <div>
@@ -68,6 +68,23 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p>Operating Expenses</p>
+                        <h5 class="text-success"> {{ transactionsAmounts?.grossProfitAmount  | currency }} </h5>
+                    </div>
+                    <div>
+                        <i class=" text-info-emphasis fas fa-money-bill-wave fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="col-md-3">
         <div class="card">
             <div class="card-body">
@@ -83,6 +100,10 @@
             </div>
         </div>
     </div>
+
+  
+
+   
 
     <div class="col-md-3">
         <div class="card">
@@ -100,23 +121,6 @@
             </div>
         </div>
     </div>
-
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <p>Gross Profit Amount</p>
-                        <h5 class="text-success"> {{ transactionsAmounts?.grossProfitAmount  | currency }} </h5>
-                    </div>
-                    <div>
-                        <i class=" text-info-emphasis fas fa-money-bill-wave fa-2x"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 </div>
 

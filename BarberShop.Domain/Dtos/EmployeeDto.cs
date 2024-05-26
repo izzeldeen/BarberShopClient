@@ -18,5 +18,16 @@ namespace BarberShop.Domain.Dtos
         public SalaryCalculationType SalaryCalculationType { get; set; }
         public bool IsAvailabile { get; set; }
         public string? FullName { get; set; }
+        public string? PhoneNumber { get; set; }
+        public double? TotalAmount { get; set; }
+        public double? DiscountAmount { get; set; }
+        public double? NetAmount { get; set; }
+        public double? CurrentAmount { get; set; }
+        public string? Email { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Image { get; set; }
+        public string? Description { get; set; }
+        public List<AssignedServicesDto>? AssignedServices { get; set; }
     }
 }

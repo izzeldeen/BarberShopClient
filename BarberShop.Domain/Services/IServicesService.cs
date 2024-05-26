@@ -14,9 +14,8 @@ namespace BarberShop.Domain.Services
 
         Task<ServiceResultDto<ServicesDto>> Create(ServicesDto entityDto);
         Task<ServiceResultDto<ServicesDto>> Update(ServicesDto entityDto);
-        Task<ServiceResultDto<List<ServicesEmployees>>> AssignServices(AssignServicesDto assignServicesDto);
-        Task<ServiceResultDto<List<ServicesDto>>> GetEmployeeServices();
-        
-
+        Task<ServiceResultDto<AssignServicesDto>> AssignServices(AssignServicesDto assignServicesDto);
+        Task<ServiceResultDto<List<ServicesDto>>> GetEmployeeServices(int? id);
+        Task<ServiceResultDto<PageSearchResultDTO<ServicesDto>>> GetAll(ServicesFilter filter);
     }
 }

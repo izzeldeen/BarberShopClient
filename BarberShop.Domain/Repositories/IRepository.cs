@@ -1,4 +1,5 @@
-﻿using BarberShop.Domain.Entities;
+﻿using BarberShop.Domain.Dtos;
+using BarberShop.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace BarberShop.Domain.Repositories
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool AsNoTracking = false);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool AsNoTracking = false);
         Task<T> Get(int id);
+        Task<T> GetAsNoTracking(int id);
         Task AddAsync(T item);
         Task AddRangeAsync(List<T> item);
         void Add(T item);
@@ -26,5 +28,8 @@ namespace BarberShop.Domain.Repositories
         bool Any(Expression<Func<T, bool>> predicate = null);
         Task<int> SaveChangesAsync();
         int? GetLoggedInUserId();
+
+        PageSearchResultDTO<T> GetAllPageination(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
+            int? pageIndex = 0, int? PageSize = 5);
     }
 }

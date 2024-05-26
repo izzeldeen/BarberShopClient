@@ -12,8 +12,10 @@ namespace BarberShop.Domain.Services
 {
     public interface IAppointmentService : IService<Appointment, AppointmentFilter, AppointmentDto>
     {
-        Task<ServiceResultDto<AppointmentDto>> EmployeeCreateAppoinment(AppointmentDto appointment);
-        Task<ServiceResultDto<List<AppointmentDto>>> GetEmployeeAppoinments();
+        Task<ServiceResultDto<AppointmentDto>> CreateAppoinment(AppointmentDto appointment);
+        Task<ServiceResultDto<List<AppointmentDto>>> GetEmployeeAppoinments(int? employeeid);
+        Task<ServiceResultDto<List<AppointmentDto>>> GetAppoinments();
+        Task<ServiceResultDto<List<AppointmentDto>>> GetClientAppoinments();
         Task<ServiceResultDto<AppointmentDetails>> GetAppointmentDetails(int id);
         Task<ServiceResultDto<AppointmentDto>> UpdateAppointmentStatus(UpdateAppointmentStatusDto updateAppointmentStatusDto);
     }

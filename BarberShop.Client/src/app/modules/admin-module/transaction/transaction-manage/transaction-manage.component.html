@@ -4,22 +4,23 @@
 
     <div class="card-header pb-0">
         <h1 *ngIf="!entityDetails?.id" class="card-title mt-1 mb-0 " >
-            {{'Create Service' | translate}}
+            {{'Create Transaction' | translate}}
         </h1>
         <h1 *ngIf="entityDetails?.id" class="card-title mt-1 mb-0 " >
-            {{'Update Employee' | translate}}
+            {{'Update Transaction' | translate}}
         </h1>
     </div>
     <div class="card-body">
-        <form #manageEntityForm="ngForm" (ngSubmit)="save(manageEntityForm)" class="py-5 px-3">
+        <form #manageEntityForm="ngForm" (ngSubmit)="saveForm()" class="py-5 px-3">
 
             <div class="row">
 
-                <div  class="col-md-3">
+                <div  class="col-md-4">
                     <label class="form-label fw-bold text-muted"> 
-                        {{'Transaction Type' | translate}} <span class="text-danger">*</span>
+                        {{'Transaction flow' | translate}} <span class="text-danger">*</span>
                     </label>
                     <ng-select 
+                    (change)="onSelectTransactionFlow()"
                     [(ngModel)]="entityDetails.transactionType" [items]="dllTransactionTypes"
                      bindLabel="viewValue" bindValue="value" name="transactionType" required
                      #transactionType='ngModel'
@@ -35,8 +36,29 @@
           </ng-select>
                 </div>
 
+                <div  class="col-md-4">
+                    <label class="form-label fw-bold text-muted"> 
+                        {{'Transaction Category' | translate}}  <span class="text-danger">*</span>
+                    </label>
+                    <ng-select 
+                    [(ngModel)]="entityDetails.transactionSubType" [items]="dllTransactionSubSelectTypes"
+                     bindLabel="viewValue" bindValue="value" name="transactionSubType" required
+                     #transactionSubType='ngModel' required
+                     placeholder="{{'Select' | translate }}"
+                     
+                     >
+              <ng-template let-item="item" ng-label-tmp>
+                  {{item.viewValue}}
+              </ng-template>
+              <ng-template let-item="item" ng-option-tmp>
+                  {{item.viewValue }}
+              </ng-template>
+          </ng-select>
+                </div>
 
-                <div  class="col-md-3">
+
+
+                <div  class="col-md-4">
                     <label class="form-label fw-bold text-muted"> 
                         {{'Employee' | translate}} 
                     </label>
@@ -55,7 +77,7 @@
               </ng-template>
           </ng-select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label class="form-label fw-bold text-muted" for="netAmount">
                         {{'Amount' | translate}}<span class="text-danger">*</span>
                     </label>
@@ -71,7 +93,7 @@
                     <app-validator [control]="netAmount"></app-validator>
                 </div>
              
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label class="form-label fw-bold text-muted" for="transactionDate">
                         {{'Date' | translate}} <span class="text-danger">*</span>
                     </label>
@@ -85,8 +107,21 @@
                            [(ngModel)]="entityDetails.transactionDate">
                     <app-validator [control]="transactionDate"></app-validator>
                 </div>
-              
-                <div class="col">
+                <div *ngIf="entityDetails.image" class="col-md-1 pt-3 text-right" >
+                    <img src="{{fileUrl}}{{entityDetails.image}}" (click)="openImage(entityDetails.image)"  width="50px;"  height="50px;">
+                   </div>
+                    <div [class]="entityDetails.image ? 'col-md-3' : 'col-md-4'" >
+                        <label class="form-label fw-bold text-muted" for="sauidfile" >
+                            {{'Image' | translate}} <span class="text-danger">*</span>
+                        </label>
+                            
+                        <input id="sauidfile" type="file" class="form-control mt-2" aria-label="file example" required
+                        (change)="onFileChange($event)" accept=".pdf, .doc, .docx, .JPG, .JPEG, .GIF, .PNG" multiple
+                        #fileInput>
+                         
+                    </div>
+
+                <div class="col-12">
                     <label class="form-label fw-bold text-muted" for="description">
                         {{'Description' | translate}} <span class="text-danger">*</span>
                     </label>
@@ -103,6 +138,7 @@
                 </div>
                
 
+               
         </div>
         
 

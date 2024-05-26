@@ -1,5 +1,6 @@
 ﻿using BarberShop.Domain.Dtos;
 using BarberShop.Domain.Enum;
+using BarberShop.Domain.Filters;
 using BarberShop.Domain.Services;
 using BarberShop.Service.Service;
 using Microsoft.AspNetCore.Authorization;
@@ -19,23 +20,23 @@ namespace BarberShop.Api.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Barber,Admin")]
-        public async Task<IActionResult> GetAllEmployees()
+        [Authorize]
+        public async Task<IActionResult> GetAllEmployees([FromQuery] EmployeeFilter filter)
         {
-            var serviceResult = await employeeService.GetAllEmployees();
+            var serviceResult = await employeeService.GetAllEmployees(filter);
             return Ok(serviceResult);
         }
 
         [HttpPost]
-        [Authorize(Roles = "Barber,Admin")]
-        public async Task<IActionResult> RegisterEmployee(RegisterDto registerDto)
+        [Authorize(Roles = "Manager,Admin")]
+        public async Task<IActionResult> RegisterEmployee([FromForm] RegisterDto registerDto)
         {
             var serviceResult = await employeeService.RegisterEmployee(registerDto);
             return Ok(serviceResult);
         }
         [HttpPut]
-        [Authorize(Roles = "Barber,Admin")]
-        public async Task<IActionResult> UpdateEmployee(RegisterDto registerDto)
+        [Authorize(Roles = "Manager,Admin,Employee")]
+        public async Task<IActionResult> UpdateEmployee([FromForm] RegisterDto registerDto)
         {
             var serviceResult = await employeeService.UpdateEmployee(registerDto);
             return Ok(serviceResult);
@@ -48,12 +49,14 @@ namespace BarberShop.Api.Controllers
             return Ok(serviceResult);
         }
         [HttpGet("{id}")]
-        [Authorize(Roles = RolesName.Barber)]
+        //[Authorize(Roles = $"{RolesName.Manager},{RolesName.Admin}")]
         public async Task<IActionResult> GetEmployeeDetails(int id)
         {
             var serviceResult = await employeeService.GetById(id);
             return Ok(serviceResult);
         }
+
+
 
     }
 }

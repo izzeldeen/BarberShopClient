@@ -13,7 +13,7 @@ namespace BarberShop.Domain.Services
         public Task<ServiceResultDto<List<TEntityBaseDto>>> GetAll();
         public Task<ServiceResultDto<TEntityBaseDto>> GetById(int Id);
         public Task<ServiceResultDto<TEntityBaseDto>> Create(TEntityBaseDto entityDto);
-        public Task<ServiceResultDto<TEntityBaseDto>> Update(TEntity entity);
+        public Task<ServiceResultDto<TEntityBaseDto>> Update(TEntityBaseDto entity);
         public Task<ServiceResultDto<TEntityBaseDto>> Delete(int Id);
     }
 }

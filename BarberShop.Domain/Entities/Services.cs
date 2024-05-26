@@ -19,7 +19,12 @@ namespace BarberShop.Domain.Entities
         public bool IsDiscountApply { get; set; }
         public DiscountPriceTypes? DiscountPriceType { get; set; }
         public double? DiscountValue { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        public string? CategoryName { get { return Category?.Name; } }
         public virtual ICollection<ServicesEmployees> ServicesEmployees { get; set; }
+        public string? Image { get; set; }
+        public string? Description { get; set; }
 
     }
 
@@ -30,7 +35,7 @@ namespace BarberShop.Domain.Entities
             builder.HasKey(x => x.Id);
             builder.HasQueryFilter(x => !x.IsDeleted);
 
-           
+
             builder.HasOne(x => x.Shop)
                 .WithMany()
                 .HasForeignKey(x => x.ShopId);
@@ -38,6 +43,12 @@ namespace BarberShop.Domain.Entities
             builder.HasMany(x => x.ServicesEmployees)
                 .WithOne(x => x.Services)
                 .HasForeignKey(x => x.ServicesId);
+
+            builder.HasOne(x => x.Category)
+                .WithMany(x => x.Services)
+                .HasForeignKey(x => x.CategoryId);
+
+            builder.Ignore(x => x.CategoryName);
 
 
 

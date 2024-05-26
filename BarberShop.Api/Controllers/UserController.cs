@@ -2,6 +2,7 @@
 using BarberShop.Domain.Entities;
 using BarberShop.Domain.Filters;
 using BarberShop.Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,13 +19,22 @@ namespace BarberShop.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery]UserFilters filter)
+        public async Task<IActionResult> GetAll([FromQuery] UserFilters filter)
         {
             var serviceResult = await userService.GetAll();
             return Ok(serviceResult);
         }
 
-       
+
+        [HttpGet("clients")]
+        public async Task<IActionResult> GetAllClients([FromQuery] UserFilters filter)
+        {
+            var serviceResult = await userService.GetAllClients();
+            return Ok(serviceResult);
+        }
+      
+
+
 
 
     }

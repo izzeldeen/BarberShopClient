@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    title: translate.instant("DashboardTest")
+    title: translate.instant("Barber Shop")
 }
  
 ];

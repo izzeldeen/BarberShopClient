@@ -13,9 +13,12 @@ export class TransactionVM extends EntityBase{
     employeeId:number;
     description:string;
     transactionType:number;
-    transactionDate:Date;
+    transactionSubType:number;
+    transactionDate:any;
     id:number;
     grossProfitAmount:number;
+    file:any;
+    image:string;
 }
 
 export class TransactionFilter extends FilterBase {

@@ -20,7 +20,7 @@ export class EmployeeManageComponent extends ManageComponent<EmployeeVM>  {
 
 
   onFileChange(event){
-    this.entityDetails.file = event.target.files;
+    this.entityDetails.file = event.target.files[0];
   }
 
   saveForm(){

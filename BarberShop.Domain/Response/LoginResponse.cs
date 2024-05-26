@@ -11,5 +11,6 @@ namespace BarberShop.Domain.Response
         public string Name { get; set; }
         public string Token { get; set; }
         public string ShopName { get; set; }
+        public string Role { get; set; }
     }
 }

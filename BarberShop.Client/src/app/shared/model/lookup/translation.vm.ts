@@ -3,4 +3,5 @@ export class Translation {
     value: string;
     languageCode: string;
     code: number;
+    file:any;
 }

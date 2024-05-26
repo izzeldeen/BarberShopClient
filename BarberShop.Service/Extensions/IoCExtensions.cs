@@ -24,6 +24,7 @@ namespace BarberShop.Service.Extensions
             #region Handlers 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAuthHandler, AuthHandler>();
+            services.AddScoped<IWhatsappHandler, WhatsappHandler>();
             #endregion
 
             #region Register Services 
@@ -31,6 +32,8 @@ namespace BarberShop.Service.Extensions
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IServicesService, ServicesService>();
+            services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             #endregion
 
@@ -42,6 +45,8 @@ namespace BarberShop.Service.Extensions
             services.AddScoped<IServicesEmployeesRepository, ServicesEmployeesRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IContactInfoRepository, ContactInfoRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 
             #endregion

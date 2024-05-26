@@ -20,3 +20,8 @@ export class ServiceVMFilter extends FilterBase {
     categoryId:number;
     serviceName:string;
 }
+
+export class AssginedServices {
+    employeeId:number;
+    ServicesIds:number[];
+}

@@ -9,6 +9,7 @@ namespace BarberShop.Domain.Common
     public static class ErrorMessages
     {
         public const string UserIsNotExists = "User is not exists";
+        public const string PhoneNumberOrCodeIsInCorrect = "Phone number or code is incorrect";
         public const string DiscountAmountMustBeLessThanAmount = "Discount amount must be less than Service Price";
         public const string DiscountPriceMustBeLessThan100 = "Discount price must be less than 100";
         public const string EmployeeNotExists = "Employee not exists";
@@ -19,6 +20,8 @@ namespace BarberShop.Domain.Common
         public const string ServiceNotExists = "Service not exists";
         public const string EntityNotExists = "Entity not exists";
         public const string PhoneNumberAlreadyExists = "Phone number already exists";
+        public const string MustSelectEmployee = "Employee Field required";
+        public const string ServicesNotValid = "Services not valid";
       
     }
 }

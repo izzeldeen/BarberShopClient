@@ -1,4 +1,5 @@
 ﻿using BarberShop.Domain.Dtos;
+using BarberShop.Domain.Enum;
 using BarberShop.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,35 +17,45 @@ namespace BarberShop.Api.Controllers
             this.appointmentService = appointmentService;
         }
 
-        [HttpPost("Employee")]
-        [Authorize(Roles = "Employee")]
+        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> EmployeeCreateAppoinment(AppointmentDto appointmentDto)
         {
-            var serviceResult = await appointmentService.EmployeeCreateAppoinment(appointmentDto);
+            var serviceResult = await appointmentService.CreateAppoinment(appointmentDto);
             return Ok(serviceResult);
 
         }
-        [HttpPost("Employee")]
-        [Authorize(Roles = "Employee")]
-        public async Task<IActionResult> ClientCreateAppoinment(AppointmentDto appointmentDto)
+
+        [HttpGet]
+        [Authorize(Roles = $"{RolesName.Admin},{RolesName.Manager}")]
+        public async Task<IActionResult> GetEmployeeAppoinments()
         {
-            var serviceResult = await appointmentService.EmployeeCreateAppoinment(appointmentDto);
+            var serviceResult = await appointmentService.GetAppoinments();
             return Ok(serviceResult);
 
         }
 
 
         [HttpGet("Employee")]
-        [Authorize(Roles = "Employee")]
-        public async Task<IActionResult> GetEmployeeAppoinments()
+        [Authorize]
+        public async Task<IActionResult> GetEmployeeAppoinments([FromQuery]int? id)
         {
-            var serviceResult = await appointmentService.GetEmployeeAppoinments();
+            var serviceResult = await appointmentService.GetEmployeeAppoinments(id);
+            return Ok(serviceResult);
+
+        }
+
+        [HttpGet("Client")]
+        [Authorize(Roles = RolesName.Client)]
+        public async Task<IActionResult> GetClientAppoinments()
+        {
+            var serviceResult = await appointmentService.GetClientAppoinments();
             return Ok(serviceResult);
 
         }
 
         [HttpPut("UpdateAppointmentStatus")]
-        [Authorize(Roles = "Barber,Employee")]
+        [Authorize(Roles = "Manager,Employee")]
         public async Task<IActionResult> UpdateAppointmentStatus(UpdateAppointmentStatusDto updateAppointmentStatusDto)
         {
             var serviceResult = await appointmentService.UpdateAppointmentStatus(updateAppointmentStatusDto);
@@ -53,7 +64,7 @@ namespace BarberShop.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Barber,Employee")]
+        [Authorize(Roles = "Manager,Employee")]
         public async Task<IActionResult> GetAppointmentDetails(int id)
         {
             var serviceResult = await appointmentService.GetAppointmentDetails(id);

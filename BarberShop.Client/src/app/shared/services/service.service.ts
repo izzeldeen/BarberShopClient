@@ -12,5 +12,17 @@ export class ServiceService extends ServiceBase<ServiceVM, ServiceVMFilter> {
         super(apiHelper, apiNames.service)
     }
 
+    assginEmployeeServices(entity:any){
+        let url = this.apiUrl + '/AssignServices';
+        var getValue = (value) => {
+            let val = value;
+            if (typeof value == 'string') {
+                val = val.trim();
+            }
+            return val;
+        };
+        Object.keys(entity).map(key => entity[key] = getValue(entity[key]));
+        return this.apiHelper.post<any, any>(url ,  entity);
+    }
 
 }

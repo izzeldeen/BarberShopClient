@@ -27,7 +27,8 @@ namespace BarberShop.Service.Service
             var serviceResult = new ServiceResultDto<TEntityBaseDto>();
             var mappedEntity = mapper.Map<TEntityBaseDto, TEntity>(entityDto);
             try
-            {
+            { 
+
                 repository.Add(mappedEntity);
                 await repository.SaveChangesAsync();
                 serviceResult.SetSuccess(entityDto);
@@ -66,14 +67,37 @@ namespace BarberShop.Service.Service
             return serviceResult;
         }
 
-        public Task<ServiceResultDto<TEntityBaseDto>> GetById(int Id)
+        public async Task<ServiceResultDto<TEntityBaseDto>> GetById(int Id)
         {
-            throw new NotImplementedException();
+            var serviceResult = new ServiceResultDto<TEntityBaseDto>();
+            var entity = await repository.Get(Id);
+            if (entity == null) return serviceResult.SetError(ErrorMessages.EntityNotExists);
+            var mappedEntity = mapper.Map<TEntity, TEntityBaseDto>(entity);
+            return serviceResult.SetSuccess(mappedEntity);
         }
 
-        public Task<ServiceResultDto<TEntityBaseDto>> Update(TEntity entity)
+        public async Task<ServiceResultDto<TEntityBaseDto>> Update(TEntityBaseDto entity)
         {
-            throw new NotImplementedException();
+            var serviceResult = new ServiceResultDto<TEntityBaseDto>();
+            var mappedEntity = mapper.Map<TEntityBaseDto, TEntity>(entity);
+            try
+            {
+                var dbEntity = await  repository.GetAsNoTracking(entity.Id);
+                if(dbEntity != null)
+                {
+                    mappedEntity.CreatedBy = dbEntity.CreatedBy;
+                    mappedEntity.CreatedDate = dbEntity.CreatedDate;
+                }
+                await repository.UpdateAsync(mappedEntity);
+                await repository.SaveChangesAsync();
+                serviceResult.SetSuccess(entity);
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                serviceResult.SetError(ex.Message);
+                return serviceResult;
+            }
         }
     }
 }

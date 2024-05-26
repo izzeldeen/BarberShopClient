@@ -11,6 +11,12 @@ export class TransactionService extends ServiceBase<TransactionVM, TransactionFi
     constructor(protected apiHelper: ApiHelperService) {
         super(apiHelper, apiNames.transaction)
     }
+    saveTransaction(formData: any){
+        return this.apiHelper.http.post<any>(this.apiUrl ,formData )
+        }
 
+        updateTransaction(formData: any){
+            return this.apiHelper.http.put<any>(this.apiUrl ,formData )
+            }
 
 }

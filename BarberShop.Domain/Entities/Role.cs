@@ -26,7 +26,7 @@ namespace BarberShop.Domain.Entities
 
             builder.HasData(
                 new Role() { Id = 1, Name = "Admin" },
-                new Role() { Id = 2, Name = "Barber" },
+                new Role() { Id = 2, Name = "Manager" },
                 new Role() { Id = 3, Name = "Employee" },
                 new Role() { Id = 4, Name = "Client" }
                 );

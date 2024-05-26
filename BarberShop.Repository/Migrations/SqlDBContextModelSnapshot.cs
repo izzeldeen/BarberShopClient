@@ -48,9 +48,6 @@ namespace BarberShop.Repository.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("FinalPrice")
-                        .HasColumnType("float");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -59,6 +56,9 @@ namespace BarberShop.Repository.Migrations
 
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<double>("NetAmount")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -92,6 +92,9 @@ namespace BarberShop.Repository.Migrations
                     b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ServicesId")
                         .HasColumnType("int");
 
@@ -99,9 +102,49 @@ namespace BarberShop.Repository.Migrations
 
                     b.HasIndex("AppointmentId");
 
+                    b.HasIndex("EmployeeId");
+
                     b.HasIndex("ServicesId");
 
                     b.ToTable("AppointmentServices");
+                });
+
+            modelBuilder.Entity("BarberShop.Domain.Entities.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModificationBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("BarberShop.Domain.Entities.ContactInfo", b =>
@@ -159,6 +202,9 @@ namespace BarberShop.Repository.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("EmploymentEndDate")
                         .HasColumnType("datetime2");
 
@@ -167,6 +213,9 @@ namespace BarberShop.Repository.Migrations
 
                     b.Property<double?>("FixedValue")
                         .HasColumnType("float");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAvailabile")
                         .HasColumnType("bit");
@@ -243,7 +292,7 @@ namespace BarberShop.Repository.Migrations
                         {
                             Id = 2,
                             IsDeleted = false,
-                            Name = "Barber"
+                            Name = "Manager"
                         },
                         new
                         {
@@ -270,11 +319,17 @@ namespace BarberShop.Repository.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("DiscountPriceType")
                         .HasColumnType("int");
@@ -284,6 +339,9 @@ namespace BarberShop.Repository.Migrations
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -305,6 +363,8 @@ namespace BarberShop.Repository.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ShopId");
 
@@ -378,6 +438,76 @@ namespace BarberShop.Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BarberShop.Domain.Entities.Transaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AppointmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("DiscountAmount")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("GrossProfitAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModificationBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("NetAmount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("TransactionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TransactionSubType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransactionType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppointmentId");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Transaction");
+                });
+
             modelBuilder.Entity("BarberShop.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -420,9 +550,15 @@ namespace BarberShop.Repository.Migrations
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Salt")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int?>("ShopId")
                         .HasColumnType("int");
@@ -503,6 +639,10 @@ namespace BarberShop.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BarberShop.Domain.Entities.Employee", "Employee")
+                        .WithMany("AppointmentServices")
+                        .HasForeignKey("EmployeeId");
+
                     b.HasOne("BarberShop.Domain.Entities.Services", "Services")
                         .WithMany()
                         .HasForeignKey("ServicesId")
@@ -510,6 +650,8 @@ namespace BarberShop.Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Appointment");
+
+                    b.Navigation("Employee");
 
                     b.Navigation("Services");
                 });
@@ -538,11 +680,19 @@ namespace BarberShop.Repository.Migrations
 
             modelBuilder.Entity("BarberShop.Domain.Entities.Services", b =>
                 {
+                    b.HasOne("BarberShop.Domain.Entities.Category", "Category")
+                        .WithMany("Services")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BarberShop.Domain.Entities.Shop", "Shop")
                         .WithMany()
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("Shop");
                 });
@@ -564,6 +714,28 @@ namespace BarberShop.Repository.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("Services");
+                });
+
+            modelBuilder.Entity("BarberShop.Domain.Entities.Transaction", b =>
+                {
+                    b.HasOne("BarberShop.Domain.Entities.Appointment", "Appointment")
+                        .WithMany("Transactions")
+                        .HasForeignKey("AppointmentId");
+
+                    b.HasOne("BarberShop.Domain.Entities.User", "Client")
+                        .WithMany("Transactions")
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("BarberShop.Domain.Entities.Employee", "Employee")
+                        .WithMany("Transactions")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Appointment");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("BarberShop.Domain.Entities.User", b =>
@@ -597,15 +769,26 @@ namespace BarberShop.Repository.Migrations
             modelBuilder.Entity("BarberShop.Domain.Entities.Appointment", b =>
                 {
                     b.Navigation("AppointmentServices");
+
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("BarberShop.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("BarberShop.Domain.Entities.Employee", b =>
                 {
+                    b.Navigation("AppointmentServices");
+
                     b.Navigation("Appointments");
 
                     b.Navigation("ContactsInfo");
 
                     b.Navigation("Services");
+
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("BarberShop.Domain.Entities.Role", b =>
@@ -630,6 +813,8 @@ namespace BarberShop.Repository.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,7 @@
 ﻿
 
+using BarberShop.Domain.Common;
+using BarberShop.Domain.Dtos;
 using BarberShop.Domain.Entities;
 using BarberShop.Domain.IHandlers;
 using BarberShop.Domain.Repositories;
@@ -35,7 +37,7 @@ namespace Taxi24.Infra.Repository
             item.CreatedBy = authHandler.GetUserId();
             dbSet.Add(item);
         }
-         public async Task UpdateAsync(T item)
+        public async Task UpdateAsync(T item)
         {
             item.ModificationDate = DateTime.Now;
             item.ModificationBy = authHandler.GetUserId();
@@ -48,7 +50,17 @@ namespace Taxi24.Infra.Repository
         }
         public async Task AddRangeAsync(List<T> item)
         {
-            await dbSet.AddRangeAsync(item);
+            try
+            {
+                await dbSet.AddRangeAsync(item);
+            }
+            catch (Exception ex)
+            {
+
+                var ESASD = ex.Message;
+            }
+
+
         }
 
         public async Task UpdateRangeAsync(List<T> item)
@@ -101,6 +113,10 @@ namespace Taxi24.Infra.Repository
         {
             return await dbSet.FindAsync(id);
         }
+        public async Task<T> GetAsNoTracking(int id)
+        {
+            return dbSet.AsNoTracking().FirstOrDefault(x => x.Id == id);
+        }
 
         public async Task<IEnumerable<T>> GetAll()
         {
@@ -123,6 +139,23 @@ namespace Taxi24.Infra.Repository
 
 
             return query;
+        }
+
+        public PageSearchResultDTO<T> GetAllPageination(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
+            int? pageIndex = 0, int? PageSize = 5)
+        {
+            IQueryable<T> query = dbSet;
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            return query.Pagination<T>(pageIndex, PageSize);
         }
 
 
@@ -148,7 +181,7 @@ namespace Taxi24.Infra.Repository
             return await query.ToListAsync();
         }
 
-       
+
 
         public async Task UpdateWithoutUserIdAsync(T item)
         {

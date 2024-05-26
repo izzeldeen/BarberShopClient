@@ -9,5 +9,8 @@ namespace BarberShop.Domain.Filters
 {
     public class ServicesFilter : EntityBaseFilter
     {
+        public int? CategoryId { get; set; }
+        public string? ServiceName { get; set; }
+        public int? EmployeeId { get; set; }
     }
 }

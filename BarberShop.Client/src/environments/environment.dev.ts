@@ -1,10 +1,9 @@
 export const environment = {
   production: false,
-  serviceUrl: 'https://test.taxi24.app/api/',
- // serviceUrl: 'https://localhost:44309/api/',
+  serviceUrl: 'http://20.46.144.183/alqasor/Api/api/',
   appName: 'Multitenant',
-  idleTimeOut: 120,
-  idleCounter: 5,
+  //filesUrl:'https://localhost:44306/Files/',
+  filesUrl:'http://20.46.144.183/alqasor/Api/Files/',
   noOfAllowedProductAttachments: 10
   
 

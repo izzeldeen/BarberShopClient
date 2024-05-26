@@ -170,13 +170,13 @@
                     <form class="pagination-wrapper">
                         <div class="form-group options pages">
                             <div class="input-group input-group-sm">
-                                <span class="input-group-addon addon-left mt-1">{{"general.show"  | translate}} </span>
+                                <span class="input-group-addon addon-left mt-1">{{"Show"  | translate}} </span>
                                 <select class="form-control mx-2 rounded-select" name="pageChangedName"
                                         [(ngModel)]="pageSize"
                                         (ngModelChange)="reloadData(null)">
                                     <option *ngFor="let item of pageSizeOptions">{{ item }}</option>
                                 </select>
-                                <span class="mt-1">{{'general.of' | translate}}  <span
+                                <span class="mt-1">{{'Of' | translate}}  <span
                                         class="fw-bolder">{{dataOfTable.dataCount}}</span> </span>
                             </div>
                         </div>

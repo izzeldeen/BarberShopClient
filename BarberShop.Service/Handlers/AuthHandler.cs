@@ -34,10 +34,10 @@ namespace BarberShop.Service.Handlers
             }
             return null;
         }
-        public bool IsBarber()
+        public bool IsManager()
         {
             string role = httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.Role)?.Value;
-            return role == RoleEnum.Barber.ToString();
+            return role == RoleEnum.Manager.ToString();
         }
 
         public string GenerateToken(User user, string role)
