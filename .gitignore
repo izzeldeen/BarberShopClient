@@ -8,3 +8,17 @@
 /BarberShop.Client/node_modules
 /BarberShop.Client/.vs
 /BarberShop.Client/.idea
+/.vs/BarberShop
+/BarberShop.Api/bin
+/BarberShop.Api/obj
+/BarberShop.Api/Properties/PublishProfiles
+/BarberShop.Api/wwwroot/Files
+/BarberShop.Domain/obj
+/BarberShop.Domain/bin
+/BarberShop.Repository/obj
+/BarberShop.Repository/bin
+/BarberShop.Service/obj
+/BarberShop.Service/bin
+/BarberShopApi/obj
+/BarberShop.Client/dist/store-pro
+/.vs/ProjectEvaluation
